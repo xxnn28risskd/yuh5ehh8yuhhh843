@@ -1,0 +1,6 @@
+discord
+asyncio
+youtube-dl
+PyNaCl
+discord.py[voice]
+player
