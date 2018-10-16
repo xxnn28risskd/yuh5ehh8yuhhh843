@@ -152,7 +152,7 @@ async def hack(ctx, hack: discord.User=None):
      lmao = await bot.say(embed=embed) 
      await asyncio.sleep(6)        
      embed = discord.Embed(colour=discord.Colour.green()) 
-     device = ['Android 4.4.4.4','Android Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
+     device = ['Android 4.4.4.4','Android 5.1.1','Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
      embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
      await bot.edit_message(lmao, embed=embed)
     
