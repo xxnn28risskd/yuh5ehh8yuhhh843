@@ -266,19 +266,26 @@ async def rps(context):
 
 @bot.command(pass_context=True)
 async def hug(ctx, user: discord.Member = None):
+    if user is ctx.message.author:
+        await bot.say(ctx.message.author.mention)
+        embed2 = discord.Embed(title="Awww I see you're lonely...")
+        embed2.set_image(url='https://cdn.discordapp.com/attachments/485437458817744934/493845789609689089/1496032842_gif7.gif') 
+        await bot.say(embed=embed2)    
+        return	
     if user is not None:
         await bot.say(user.mention)
         embed = discord.Embed(title="{} You got hugged by {} ! So cute 🖤".format(user.name, ctx.message.author.name), color=0xDEA6D5)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/469160650132815900/494949506530672670/giphy_1.gif")
         embed.set_footer(text='lilcsz#5890 - Kermit Bot')
-        choices = ['https://cdn.discordapp.com/attachments/469160650132815900/494940556707889152/unnamed_1.gif', 'https://cdn.discordapp.com/attachments/469160650132815900/494940557253017610/unnamed_4.gif', 'https://cdn.discordapp.com/attachments/469160650132815900/494940558230552607/unnamed_3.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495245917306355722/tenor_5.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495246505595109386/tenor_4.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495247036015443979/tenor_2.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495247102822318080/tenor_1.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495247250901958656/tenor.gif']  
+        choices = [' https://cdn.discordapp.com/attachments/469160650132815900/495247102822318080/tenor_1.gif','https://cdn.discordapp.com/attachments/469160650132815900/501779813917523978/original.gif', 'https://cdn.discordapp.com/attachments/469160650132815900/494940557253017610/unnamed_4.gif', 'https://cdn.discordapp.com/attachments/469160650132815900/494940558230552607/unnamed_3.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495245917306355722/tenor_5.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495246505595109386/tenor_4.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495247036015443979/tenor_2.gif','  https://cdn.discordapp.com/attachments/469160650132815900/494940556707889152/unnamed_1.gif',' https://cdn.discordapp.com/attachments/469160650132815900/495247250901958656/tenor.gif']  
         embed.set_image(url=random.choice(choices))
         await bot.say(embed=embed)
+        return   
     else:
         await bot.say(ctx.message.author.mention)
         embed1 = discord.Embed(title="Awww I see you're lonely...")
         embed1.set_image(url='https://cdn.discordapp.com/attachments/485437458817744934/493845789609689089/1496032842_gif7.gif')
-        await bot.say(embed=embed1) 
+        await bot.say(embed=embed1)
 
 players = {"497833617590976514"}
 queues = {"497833617590976514"}
@@ -586,17 +593,24 @@ async def invitebot(ctx):
 	   embed.set_thumbnail(url="https://image.ibb.co/cw36B9/unnamed-1.jpg")
 	   await bot.say(embed=embed)
 @bot.command()
-async def dice(cards=None):
-	if cards is None:
-          await bot.say("```Please enter number.```")
-          return
-	else:		
-         cards = ['1','2','3','4','0','5','6']
-         await bot.say(":slot_machine: You chose number **{}!**".format(random.choice(cards)))
+async def dice(numbers=None):
+	if numbers is None:
+		embed = discord.Embed(colour=discord.Colour.green()) 
+		embed.add_field(name='Dice',value="🎰 **Please chose number from 0-10**")
+		await bot.say(embed=embed)
+		return
+		numbers = ['1','2','3','4','0','5','6','7','8','9','10']				
+	if numbers is not None:		
+	          numbers = ['1','2','3','4','0','5','6','7','8','9','10']
+	          embed = discord.Embed(colour=discord.Colour.blue()) 
+	          embed.add_field(name='Dice',value="🎰 **You chose number: {}**".format(random.choice(numbers)))
+	          await bot.say(embed=embed)
 @bot.command()
 async def rate(target: discord.Member):
-    cards = ['-99999999999','10/10','0/9','0/8','0/7','0/6','0/5', '0/4','0/3','0/2','0/1']	
-    await bot.say(target.mention + " :thinking: **I give it to him** **{}**".format(random.choice(cards))) 	
+           cards = ['-99999999999','10/10','0/9','0/8','0/7','0/6','0/5', '0/4','0/3','0/2','0/1']		
+           embed = discord.Embed(colour=discord.Colour.green())                 
+           embed.add_field(name='Rate',value=target.mention + " 🤔 **I give it to him** **{}**".format(random.choice(cards)))
+           await bot.say(embed=embed)	
 
 @bot.command(pass_context = True)
 async def anonim_msg(ctx, userName: discord.User, *, content): 
