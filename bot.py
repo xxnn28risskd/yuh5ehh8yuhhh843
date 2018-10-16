@@ -95,17 +95,66 @@ async def status(ctx, *,game):
     author = ctx.message.author
     if ctx.message.author.id == '428298038612590612': 
             await bot.change_presence(game=discord.Game(name=game, type=1))
-            print ("bot status has been changed")
+            embed = discord.Embed(color=0xb5ff29)
+            embed.add_field(name="ِGame:", value="Succesfully game name changed with: {}".format(game))
+            await bot.say(embed=embed)
     else:
     	    await bot.say("```Only bot owner```")
+    	    
+@bot.command(pass_context=True)
+async def listenst(ctx, *,game):	
+    author = ctx.message.author
+    if ctx.message.author.id == '428298038612590612': 
+            await bot.change_presence(game=discord.Game(name=game, type=2))
+            embed = discord.Embed(color=0xb5ff29)
+            embed.add_field(name="ِMusic Status:", value="Succesfully music status name changed with: {}".format(game))
+            await bot.say(embed=embed)
+    else:
+    	    await bot.say("```Only bot owner```")    	    
+    	    
     	         
 @bot.command(pass_context=True)
 async def status1(ctx):
     author = ctx.message.author
     if ctx.message.author.id == '428298038612590612':
                 await bot.change_presence(game=discord.Game(name='now '+str(len(bot.servers))+' servers and'' '+str(len(set(bot.get_all_members())))+' user! ', type=1))    	
+                embed = discord.Embed(color=0xb5ff29)
+                embed.add_field(name="ِGame:", value="Succesfully game name changed with: status1")
+                await bot.say(embed=embed)
+                
     else:
                 await bot.say("```Only bot owner```")
+                
+@bot.command(pass_context=True)
+async def hack(ctx, hack: discord.User=None):	
+   if hack is None:
+     embed = discord.Embed(color=0xb5ff29)   	
+     embed.add_field(name="ِLOL", value="You need hack yourself ? start with shut down phone/pc")
+     await bot.say(embed=embed)
+   else:
+     embed = discord.Embed(color=0xb5ff29)
+     loc = ['United States','United Kingdom','Turkey','India','Polish']
+     resp = embed.add_field(name="Hack", value="Location:  {}".format(random.choice(loc)))
+     resp = embed.add_field(name="ِMail:", value="I'm searching mail...")
+     resp = await bot.say(embed=embed)   
+     await asyncio.sleep(5)       
+     embed = discord.Embed(colour=discord.Colour.magenta()) 
+     mails = ['gmail.com','hotmail.com','outlook.com','yahoo.com']      
+     hack = hack.name         
+     embed.add_field(name="Hack " + hack,value=f"Mail: `"+ hack +"****@{}`".format(random.choice(mails)))
+     pas = ['8618**92','playe*','937*8*99','123456**']
+     embed.add_field(name="-",value="Password: `" + hack +"{}`" .format(random.choice(pas)))     
+     await bot.edit_message(resp, embed=embed)  
+     embed = discord.Embed(color=0xb5ff29)
+     ip = ['931.*61.3*9.**.03','82.4*1.913.**.43','172.9****.352.**.36','71.58*1.81.**','51.8**2.61.9*']
+     lmao = embed.add_field(name="Hack", value=hack + " IP Adress: {}".format(random.choice(ip)))
+     lmao = embed.add_field(name="Succesfully get Real IP", value="Ping/DDoS Attack: {}".format(random.choice(ip)))
+     lmao = await bot.say(embed=embed) 
+     await asyncio.sleep(6)        
+     embed = discord.Embed(colour=discord.Colour.green()) 
+     device = ['Android 4.4.4.4','Android Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
+     embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
+     await bot.edit_message(lmao, embed=embed)
     
     
 @bot.command(pass_context=True)
@@ -558,12 +607,16 @@ async def anonim_msg(ctx, userName: discord.User, *, content):
 @bot.command(pass_context=True)
 async def rateidiot(ctx, target: discord.Member=None):
 	if target is None:
-              cards = ['%19 idiot','%32 idiot','%48 idiot','%76 idiot','%100 idiot xDD','%16 idiot','%0 idiot','%5 idiot','%68 idiot','%51 idiot','%66 idiot','%34 idiot','%41 idiot']
-              await bot.say(":slot_machine: " + ctx.message.author.mention +" **is** **{}**".format(random.choice(cards)))
+              cards = ['%19 idiot','%32 idiot','%48 idiot','%76 idiot','%100 idiot xDD','%16 idiot','%0 idiot','%5 idiot','%68 idiot','%51 idiot','%66 idiot','%34 idiot','%41 idiot','%24 idiot']
+              embed = discord.Embed(colour=discord.Colour.green()) 
+              embed.add_field(name='Rate Idiot',value="🎰 " + ctx.message.author.mention + " **is {}**".format(random.choice(cards)))
+              await bot.say(embed=embed)
               return
 	else:
-              cards = ['%19 idiot','%32 idiot',' %48 idiot','%76 idiot','%100 idiot xDDDD','%16 idiot','%0 idiot','%5 idiot',' %68 idiot','%51 idiot','%34 idiot','%41 idiot']
-              await bot.say(":slot_machine: " + target.mention +" **is** **{}**".format(random.choice(cards)))
+              cards = ['%19 idiot','%32 idiot','%48 idiot','%76 idiot','%100 idiot xDD','%16 idiot','%0 idiot','%5 idiot','%68 idiot','%51 idiot','%66 idiot','%34 idiot','%41 idiot','%24 idiot']
+              embed = discord.Embed(colour=discord.Colour.green()) 
+              embed.add_field(name='Rate Idiot',value="🎰 " + target.mention + " **is {}**".format(random.choice(cards)))
+              await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
 async def unmute(ctx, member: discord.Member):
