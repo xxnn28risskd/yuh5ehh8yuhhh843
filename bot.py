@@ -89,7 +89,26 @@ async def on_message(message):
            author = message.author     	
            await bot.send_message(message.channel, "ْowu uwu what is!?!?")  
         	        
+@bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
+async def byemom(ctx, *, content):
+        if len(content) > 50:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)
 
+        else:
+            img = Image.open('byemom.jpeg')
+            font = ImageFont.truetype('champagne-limousines.ttf', size=30)
+            rfont = ImageFont.truetype('champagne-limousines.ttf', size=10)
+            rotate_text = content
+            draw = ImageDraw.Draw(img)
+            draw.text((770, 1068), rotate_text, (0, 0, 0), font=font)
+            draw.text((706, 1362), "Request by {}".format(ctx.message.author.name), (0, 0, 0), font=rfont)
+            draw.text((736, 1362), "ByeMom", (0, 0, 0), font=rfont)
+            img.save('byemomtext.jpeg')
+            await bot.upload("byemomtext.jpeg")        
+            os.remove("byemomtext.jpeg") 
+			
 @bot.command(pass_context=True)
 async def status(ctx, *,game):	
     author = ctx.message.author
