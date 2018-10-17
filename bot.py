@@ -558,9 +558,10 @@ async def h(ctx):
          embed = discord.Embed(colour=discord.Colour.green()) 
          embed.add_field(name='Moderation Commands',value="Reaction: 🔍", inline=True)
          embed.add_field(name='Fun Commands',value="Reaction: 🍹", inline=True)
-         embed.add_field(name='Information Commands',value="Reaction: 💾", inline=True)         
+         embed.add_field(name='Information Commands',value="Reaction: 💾", inline=True)
+         embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)                  
          message = await bot.say(embed=embed)   
-         reaction = await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾')
+         reaction = await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾'), await bot.add_reaction(message,'🎨')
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          if str(reaction.reaction.emoji) == "🔍":
          	em = discord.Embed(color=0xea7938)
@@ -569,15 +570,17 @@ async def h(ctx):
 
          if str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!raid`, `k!cancerspam`, `k!say`, `k!hug`, `k!spacefont`, `k!hack`", inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!raid`, `k!cancerspam`, `k!say`, `k!hug`, `k!spacefont`", inline=True)
                 message = await bot.say(embed=em)
                 
          if str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`", inline=True)
-                message = await bot.say(embed=emb)        
 
-
+         if str(reaction.reaction.emoji) == "🎨":                                
+                emb =  discord.Embed(colour=discord.Colour.magenta()) 
+                emb.add_field(name='Image Commands',value="`k!byemom`", inline=True)         
+                message = await bot.say(embed=emb)
  
 @bot.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
