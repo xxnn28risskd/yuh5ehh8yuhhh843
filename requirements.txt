@@ -5,3 +5,10 @@ PyNaCl
 discord.py[voice]
 player
 PIL
+image
+glob
+BytesIO
+ImageFont
+ImageDraw
+ImageOps 
+sys
