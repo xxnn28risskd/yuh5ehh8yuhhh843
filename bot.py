@@ -596,16 +596,17 @@ async def h(ctx):
          	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`", inline=True)
          	await bot.say(embed=em)  
 
-         if str(reaction.reaction.emoji) == "🍹":		
+         elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
                 em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!raid`, `k!cancerspam`, `k!say`, `k!hug`, `k!spacefont`", inline=True)
                 message = await bot.say(embed=em)
                 
-         if str(reaction.reaction.emoji) == "💾":
+         elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`", inline=True)
+                message = await bot.say(embed=emb)
 
-         if str(reaction.reaction.emoji) == "🎨":                                
+         elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Image Commands',value="`k!byemom`", inline=True)         
                 message = await bot.say(embed=emb)
