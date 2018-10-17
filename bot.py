@@ -31,8 +31,6 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from PIL import ImageOps 
-import os
-import sys
 import PIL
 from PIL import Image
 
