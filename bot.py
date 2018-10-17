@@ -24,6 +24,17 @@ import textwrap
 import youtube_dl
 from urllib.parse import urlparse
 from contextlib import redirect_stdout
+import image
+import glob
+from io import BytesIO
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+from PIL import ImageOps 
+import os
+import sys
+import PIL
+from PIL import Image
 
 
 discord.__version__
