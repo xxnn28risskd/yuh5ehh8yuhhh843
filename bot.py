@@ -100,13 +100,14 @@ async def on_message(message):
         	        
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
-        if len(content) > 50:
+        if len(content) > 35:
             embed = discord.Embed(colour=(0x36393E))
             embed.add_field(name="Error!", value="The text is too long!", inline=True)
-            await bot.say(embed=embed)
+            await bot.say(embed=embed)	
+            return
         if content is None:
             embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="Error!", value="Please enter argument example: k!sale Free games", inline=True)
+            embed.add_field(name="Error!", value="Please enter argument example: k!byemom hack", inline=True)
             await bot.say(embed=embed)
             return
         if content is not None:
@@ -121,6 +122,84 @@ async def byemom(ctx, *, content):
             img.save('byemomtext.jpeg')
             await bot.upload("byemomtext.jpeg")        
             os.remove("byemomtext.jpeg") 
+            
+            
+@bot.command(pass_context=True)
+async def sale(ctx, content=None, *, content2=None):
+        if len(content) > 35:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)	
+            return
+        if content is None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="Please enter argument example: k!sale pen free", inline=True)
+            await bot.say(embed=embed)
+            return
+        if content is not None:
+            img = Image.open('sale.jpeg')
+            font = ImageFont.truetype('champagne-limousines.ttf', size=30)
+            rfont = ImageFont.truetype('champagne-limousines.ttf', size=10)
+            rotate_text = content
+            rotate_text2 = content2
+            draw = ImageDraw.Draw(img)
+            draw.text((190, 65), rotate_text, (0, 0, 0), font=font)
+            draw.text((100, 640), rotate_text2, (0, 0, 0), font=font)            
+            img.save('salebob.png')
+            await bot.upload("salebob.png")
+            os.remove("salebob.png")  
+            return 
+        if len(content) > 50:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)
+            
+            
+@bot.command(pass_context=True)
+async def rip(ctx, *, content=None):
+        if len(content) > 20:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)	
+            return
+        if content is None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="Please enter argument example: k!rip gamer000", inline=True)
+            await bot.say(embed=embed)
+            return
+        if content is not None:
+            img = Image.open('rip0.jpeg')
+            font = ImageFont.truetype('champagne-limousines.ttf', size=30)
+            rfont = ImageFont.truetype('champagne-limousines.ttf', size=10)
+            rotate_text = content
+            draw = ImageDraw.Draw(img)
+            draw.text((185, 374), rotate_text, (0, 0, 0), font=font)          
+            img.save('rip.png')
+            await bot.upload("rip.png")        
+            os.remove("rip.png")  
+
+@bot.command(pass_context=True)
+async def google(ctx, *, content=None):
+        if len(content) > 35:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)	
+            return
+        if content is None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="Please enter argument example: k!google hack", inline=True)
+            await bot.say(embed=embed)
+            return
+        if content is not None:
+            img = Image.open('fbigoogle.jpeg')
+            font = ImageFont.truetype('arial.ttf', size=30)
+            rfont = ImageFont.truetype('arial.ttf', size=10)
+            rotate_text = content
+            draw = ImageDraw.Draw(img)
+            draw.text((40, 313), rotate_text, (0, 0, 0), font=font)          
+            img.save('google.png')
+            await bot.upload("google.png")        
+            os.remove("google.png")
             
             
 @bot.command(pass_context=True)
