@@ -694,7 +694,7 @@ async def h(ctx):
 
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Image Commands',value="`k!byemom`, `k!rip`, `k!sale`", inline=True)         
+                emb.add_field(name='Image Commands',value="`k!byemom`, `k!rip`, `k!sale`, `k!google`", inline=True)         
                 message = await bot.say(embed=emb)
  
 @bot.command(pass_context = True)
