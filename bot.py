@@ -202,54 +202,7 @@ async def google(ctx, *, content=None):
             os.remove("google.png")
             
             
-@bot.command(pass_context=True)
-async def sale(ctx, content=None, *, content2=None):
-        if content is None:
-            embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="Error!", value="Please enter argument example: k!sale Free games", inline=True)
-            await bot.say(embed=embed)
-            return
-        if content is not None:
-            img = Image.open('sale.jpeg')
-            font = ImageFont.truetype('champagne-limousines.ttf', size=30)
-            rfont = ImageFont.truetype('champagne-limousines.ttf', size=10)
-            rotate_text = content
-            rotate_text2 = content2
-            draw = ImageDraw.Draw(img)
-            draw.text((190, 65), rotate_text, (0, 0, 0), font=font)
-            draw.text((100, 640), rotate_text2, (0, 0, 0), font=font)            
-            img.save('salebob.png')
-            await bot.upload("salebob.png")
-            os.remove("salebob.png")  
-            return 
-        if len(content) > 50:
-            embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="Error!", value="The text is too long!", inline=True)
-            await bot.say(embed=embed)
-            
-            
-@bot.command(pass_context=True)
-async def rip(ctx, *, content=None):
-        if content is None:
-            embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="Error!", value="Please enter argument example: k!rip Gamer00", inline=True)
-            await bot.say(embed=embed)
-            return
-        if content is not None:
-            img = Image.open('rip0.jpeg')
-            font = ImageFont.truetype('champagne-limousines.ttf', size=30)
-            rfont = ImageFont.truetype('champagne-limousines.ttf', size=10)
-            rotate_text = content
-            draw = ImageDraw.Draw(img)
-            draw.text((185, 374), rotate_text, (0, 0, 0), font=font)          
-            img.save('rip.png')
-            await bot.upload("rip.png")        
-            os.remove("rip.png")  
-            return 
-        if len(content) > 50:
-            embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="Error!", value="The text is too long!", inline=True)
-            await bot.say(embed=embed) 
+
 			
 @bot.command(pass_context=True)
 async def status(ctx, *,game):	
