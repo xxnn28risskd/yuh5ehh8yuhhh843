@@ -201,7 +201,28 @@ async def google(ctx, *, content=None):
             await bot.upload("google.png")        
             os.remove("google.png")
             
-            
+@bot.command(pass_context=True)
+async def tweetdt(ctx, *, content=None):
+        if len(content) > 30:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="The text is too long!", inline=True)
+            await bot.say(embed=embed)	
+            return
+        if content is None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="Error!", value="Please enter argument example: k!tweetdt 00 is best!", inline=True)
+            await bot.say(embed=embed)
+            return
+        if content is not None:
+            img = Image.open('tweetdt.jpg')
+            font = ImageFont.truetype('arial.ttf', size=30)
+            rfont = ImageFont.truetype('arial.ttf', size=10)
+            rotate_text = content
+            draw = ImageDraw.Draw(img)
+            draw.text((65, 105), rotate_text, (0, 0, 0), font=font)          
+            img.save('tweet.png')
+            await bot.upload("tweet.png")        
+            os.remove("tweet.png")          
 
 			
 @bot.command(pass_context=True)
