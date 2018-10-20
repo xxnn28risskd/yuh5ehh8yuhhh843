@@ -203,7 +203,7 @@ async def google(ctx, *, content=None):
             
 @bot.command(pass_context=True)
 async def tweetdt(ctx, *, content=None):
-        if len(content) > 30:
+        if len(content) > 40:
             embed = discord.Embed(colour=(0x36393E))
             embed.add_field(name="Error!", value="The text is too long!", inline=True)
             await bot.say(embed=embed)	
