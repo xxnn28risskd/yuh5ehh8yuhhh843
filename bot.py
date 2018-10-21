@@ -160,9 +160,6 @@ async def on_message(message):
         if message.content.startswith('xd'):	
            author = message.author     	
            await bot.send_message(message.channel, "funny :joy: :ok_hand: :joy: :ok_hand:")       
-        if message.content.startswith('What'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "Wut??")                
         if message.content.startswith('wut'):	
            author = message.author     	
            await bot.send_message(message.channel, "whaat??")           
