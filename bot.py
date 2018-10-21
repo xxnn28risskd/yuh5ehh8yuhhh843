@@ -743,17 +743,14 @@ async def h(ctx):
          	em = discord.Embed(color=0xea7938)
          	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`, `k!createtxtchannel`, `k!createvcchannel`", inline=True)
          	await bot.say(embed=em)  
-         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
                 em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!raid`, `k!cancerspam`, `k!say`, `k!hug`, `k!spacefont`", inline=True)
                 message = await bot.say(embed=em)
-         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)            
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`", inline=True)
                 message = await bot.say(embed=emb)
-         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Image Commands',value="`k!byemom`, `k!rip`, `k!sale`, `k!google`, `k!tweetdt`", inline=True)         
