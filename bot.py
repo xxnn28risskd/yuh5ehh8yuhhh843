@@ -500,22 +500,32 @@ async def delrole(ctx, user:discord.User,*,role:discord.Role):
 
 @bot.command(pass_context=True)
 async def kick(ctx, user: discord.Member):
-    author = ctx.message.author
-    if author.server_permissions.kick_members or ctx.message.author.id == '428298038612590612':
-        await bot.kick(user)
-        await bot.say("{} has been kicked!".format(user.name))
-    else:
-        await bot.say("You do **NOT** have permission to run this command!")
-
+	if ctx.message.author.server_permissions.kick_members or ctx.message.author.id == is_owner:
+		embed = discord.Embed(title="Kicked".format(user.name), description="User Info :", color=0xf800)
+		embed.add_field(name="Username :", value=user.name, inline=True)
+		embed.add_field(name="ID :", value=user.id, inline=True)
+		embed.add_field(name="Moderator :", value=ctx.message.author.name, inline=True)
+		embed.set_thumbnail(url=user.avatar_url)
+		await bot.say(embed=embed)
+		await bot.kick(user)		 
+	else:
+		embed = discord.Embed(title="No permission".format(user.name), description="You need kick members permission.", color=0xf800)
+		await bot.say(embed=embed)    
+    
 @bot.command(pass_context=True)
 async def ban(ctx, user: discord.Member):
-    author = ctx.message.author
-    if author.server_permissions.ban_members or ctx.message.author.id == '428298038612590612':
+     if ctx.message.author.server_permissions.ban_members or ctx.message.author.id == is_owner:	
+        embed = discord.Embed(title="Banned".format(user.name), description="User Info :", color=0xf800)
+        embed.add_field(name="Username :", value=user.name, inline=True)
+        embed.add_field(name="ID :", value=user.id, inline=True)
+        embed.add_field(name="Moderator :", value=ctx.message.author.mention, inline=True)
+        embed.set_thumbnail(url=user.avatar_url)
         await bot.ban(user)
-        await bot.say("{} has been banned!".format(user.name))
-    else:
-        await bot.say("You do **NOT** have permission to run this command! sad :l")           
-
+        await bot.say(embed=embed)
+     else:
+     	embed = discord.Embed(title="No permission".format(user.name), description="You need kick members permission.", color=0xf800)
+     	await bot.say(embed=embed)
+	
 @bot.command(pass_context=True)
 async def botowner(ctx):
    embed = discord.Embed(name="Cloud Bot", description="Bot Owner is: lilcsz#5890 send DM for help.", color=0xff00f6)
