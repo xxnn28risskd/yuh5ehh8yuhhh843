@@ -91,9 +91,6 @@ async def on_message(message):
         if message.content.startswith('kermit'): 
            author = message.author     	
            await bot.send_message(message.channel, f"Yes "+author.mention+", just say k!help for help.")   
-        if message.content.startswith('hi'):
-           author = message.author     	
-           await bot.send_message(message.channel, f"**Welcome! "+author.mention+"**")
         if message.content.startswith('owu'):	
            author = message.author     	
            await bot.send_message(message.channel, "ْowu uwu what is!?!?")  
