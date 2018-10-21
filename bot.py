@@ -135,7 +135,7 @@ async def on_message(message):
            await bot.send_message(message.channel, "your channel not good")          
         if message.content.startswith('?'):	
            author = message.author     	
-           await bot.send_message(message.channel, "i٥dk") 
+           await bot.send_message(message.channel, "i٠٠٥dk") 
         if message.content.startswith('idk'):	
            author = message.author     	
            await bot.send_message(message.channel, "i٠dk")                      
