@@ -124,9 +124,9 @@ async def on_message(message):
         if message.content.startswith('yes'):	
            author = message.author     	
            await bot.send_message(message.channel, "no")
-        if message.content.startswith('no u'):	
+        if message.content.startswith('n٠o u'):	
            author = message.author     	
-           await bot.send_message(message.channel, "no no u")                      
+           await bot.send_message(message.channel, "n٠o n٠o u")                      
         if message.content.startswith('talk'):	
            author = message.author     	
            await bot.send_message(message.channel, "ok")           
@@ -141,10 +141,10 @@ async def on_message(message):
            await bot.send_message(message.channel, "i٠dk")                      
         if message.content.startswith('lol'):	
            author = message.author     	
-           await bot.send_message(message.channel, "lmao")   
+           await bot.send_message(message.channel, "lm٠ao")   
         if message.content.startswith('lmao'):	
            author = message.author     	
-           await bot.send_message(message.channel, "lol")                   
+           await bot.send_message(message.channel, "٠l٠ol")                   
         if message.content.startswith('anime'):	
            author = message.author     	
            await bot.send_message(message.channel, "who weeb")           
