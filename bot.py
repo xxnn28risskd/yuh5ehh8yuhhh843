@@ -310,7 +310,41 @@ async def bans(ctx):
     return await bot.say(embed = embed) 
 
 
-
+@bot.command(pass_context=True)
+async def createtxtchannel(ctx, channel=None):
+     if channel is None:
+     	embed = discord.Embed(title="Missing argument".format(ctx.message.author.name), description="Please enter argument. example: k!createtxtchannel fun", color=0xffaa00)
+     	await bot.say(embed=embed)
+     	return
+     if ctx.message.author.server_permissions.manage_channels or ctx.message.author.id == is_owner:
+     	server = ctx.message.server
+     	await bot.create_channel(server, channel, type=discord.ChannelType.text)
+     	embed = discord.Embed(title="Channel".format(ctx.message.author.name), description="Succesfully, channel created channel name: "+channel, color=0xffaa00)
+     	embed.add_field(name="Created by :", value=ctx.message.author.mention, inline=True)     	     	
+     	embed.set_thumbnail(url=ctx.message.author.avatar_url)    	
+     	await bot.say(embed=embed)
+     else:     	
+     	embed = discord.Embed(title="No permission".format(user.name), description="You need manage channels permission.", color=0xf800)
+     	await bot.say(embed=embed)     
+     	
+     	
+     	
+@bot.command(pass_context=True)
+async def createvcchannel(ctx, channel=None):
+     if channel is None:
+     	embed = discord.Embed(title="Missing argument".format(ctx.message.author.name), description="Please enter argument. example: k!createvcchannel fun", color=0x000000)
+     	await bot.say(embed=embed)
+     	return
+     if ctx.message.author.server_permissions.manage_channels or ctx.message.author.id == is_owner:
+     	server = ctx.message.server
+     	await bot.create_channel(server, channel, type=discord.ChannelType.voice)
+     	embed = discord.Embed(title="Voice Channel".format(ctx.message.author.name), description="Succesfully, voice channel created channel name: "+channel, color=0x000000)
+     	embed.add_field(name="Created by :", value=ctx.message.author.mention, inline=True)     	     	
+     	embed.set_thumbnail(url=ctx.message.author.avatar_url)    	
+     	await bot.say(embed=embed)
+     else:     	
+     	embed = discord.Embed(title="No permission".format(user.name), description="You need manage channels permission.", color=0x000000)
+     	await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
 async def join(ctx):
@@ -707,19 +741,19 @@ async def h(ctx):
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          if str(reaction.reaction.emoji) == "🔍":
          	em = discord.Embed(color=0xea7938)
-         	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`", inline=True)
+         	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`, `k!createtxtchannel`, `k!createvcchannel`", inline=True)
          	await bot.say(embed=em)  
-
+         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
                 em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!raid`, `k!cancerspam`, `k!say`, `k!hug`, `k!spacefont`", inline=True)
                 message = await bot.say(embed=em)
-                
+         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)            
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`", inline=True)
                 message = await bot.say(embed=emb)
-
+         reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Image Commands',value="`k!byemom`, `k!rip`, `k!sale`, `k!google`, `k!tweetdt`", inline=True)         
