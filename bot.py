@@ -763,6 +763,28 @@ async def warn(ctx, userName: discord.User, *, message:str):
     await bot.say(":warning: __**{0} Has Been Warned!**__:warning:  **Reason:{1}** ".format(userName,message))   
 
 @bot.command(pass_context=True)
+async def nickname(ctx, member: discord.Member=None, *, newnick=None):
+        if ctx.message.author.server_permissions.manage_nicknames:
+            if member is None:
+              embed=discord.Embed(color=0x00ffd9)
+              embed.add_field(name="Member None", value="**Please specify a user**")
+              await bot.say(embed=embed)            
+              return
+            elif newnick is None:
+            	embed=discord.Embed(color=0x00ffd9)
+            	embed.add_field(name="Nickname None", value="**Please specify a nickname**")
+            	await bot.say(embed=embed)
+            	return
+            author = ctx.message.author
+            await bot.change_nickname(member, newnick)
+            embed=discord.Embed(color=0x00ffd9)
+            embed.add_field(name="Nickname changed:", value="** **")
+            embed.add_field(name="Author", value=f"{ctx.message.author}")
+            embed.add_field(name="User:", value=f"{member}")
+            embed.add_field(name="New nickname:", value=f"{newnick}")
+            await bot.say(embed=embed)	
+	
+@bot.command(pass_context=True)
 async def invitebot(ctx):
 	   embed=discord.Embed(title="Click Here", url="https://goo.gl/eWhCmz", description=" ", color=0xa8ddff)
 	   embed.set_author(name="Kermit Bot")
