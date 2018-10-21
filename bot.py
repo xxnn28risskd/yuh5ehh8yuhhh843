@@ -93,7 +93,85 @@ async def on_message(message):
            await bot.send_message(message.channel, f"Yes "+author.mention+", just say k!help for help.")   
         if message.content.startswith('owu'):	
            author = message.author     	
-           await bot.send_message(message.channel, "ْowu uwu what is!?!?")  
+           await bot.send_message(message.channel, "ْowu uwu what is!?!?") 
+        if message.content.startswith('uwu'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "ْowu uwu what is!?!?")           
+        if message.content.startswith('guys'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "yes")           
+        if message.content.startswith('for what?, my prefix k!'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "ْowu uwu what is!?!?")           
+        if message.content.startswith('look'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "ok")         
+        if message.content.startswith('oof'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "٠oo٠f roblox so goOd")             
+        if message.content.startswith('kevin'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "kevin")    
+        if message.content.startswith('xxxtentacion'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "Rip, and respect from Kermit")
+        if message.content.startswith('lil pump'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "gucci gang gucci gang")              
+        if message.content.startswith('good'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "not good")                          
+        if message.content.startswith('yes'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "no")
+        if message.content.startswith('no u'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "no no u")                      
+        if message.content.startswith('talk'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "ok")           
+        if message.content.startswith('my channel'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "your channel not good")          
+        if message.content.startswith('?'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "idk") 
+        if message.content.startswith('idk'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "idk")                      
+        if message.content.startswith('lol'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "lmao")   
+        if message.content.startswith('lmao'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "lol")                   
+        if message.content.startswith('anime'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "who weeb")           
+        if message.content.startswith('gucci'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "u ricH")           
+        if message.content.startswith('turk'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "kebab good")           
+        if message.content.startswith('english'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "england good language too")          
+        if message.content.startswith('xd'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "funny :joy: :ok_hand: :joy: :ok_hand:")       
+        if message.content.startswith('What'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "Wut??")                
+        if message.content.startswith('wut'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "whaat??")           
+        if message.content.startswith('kebab'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "i like")    
+        if message.content.startswith('who created kermit'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "lilcsz#5890 created me")  
         	        
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
@@ -119,7 +197,44 @@ async def byemom(ctx, *, content):
             img.save('byemomtext.jpeg')
             await bot.upload("byemomtext.jpeg")        
             os.remove("byemomtext.jpeg") 
-            
+   
+@bot.command(pass_context=True)
+async def idea(ctx, *, ideamsg: str=None):
+	if ideamsg is None:
+		embed = discord.Embed(title="Idea", description=f"You need enter idea", color=0x8ab9ff)
+	else:		
+		channel = bot.get_channel('503569869959331840')
+		embed = discord.Embed(title="New idea", description=f"Details: {ideamsg}", color=0xff9393)
+		embed.add_field(name="User Name:", value=f"{ctx.message.author}", inline=False) 		
+		embed.add_field(name="User ID", value=f"{ctx.message.author.id}", inline=False)     
+		embed.add_field(name="Server Name:", value=f"{ctx.message.server.name}", inline=False)
+		embed.add_field(name="Server ID:", value=f"{ctx.message.server.id}", inline=False) 		
+		await bot.send_message(channel, embed=embed)
+		embed = discord.Embed(title="Idea", description=f"Your idea has been sent, you will get a return.", color=0xff9393)
+		embed.add_field(name="Idea", value=f"Idea : {ideamsg}", inline=False)    
+		embed.add_field(name="User ID", value=f"Name: {ctx.message.author.id}", inline=False)    
+		embed.add_field(name="Author Name:", value=f"Name: {ctx.message.author}", inline=False)
+		embed.add_field(name="Author ID", value=f"Name: {ctx.message.author.id}", inline=False)
+		await bot.say(embed=embed) 
+		
+@bot.command(pass_context=True)
+async def report(ctx, *, ideamsg: str=None):
+	if ideamsg is None:
+		embed = discord.Embed(title="Report", description=f"You need enter report", color=0x8ab9ff)
+	else:		
+		channel = bot.get_channel('503590357758640139')
+		embed = discord.Embed(title="New report", description=f"Details: {ideamsg}", color=0xff9393)
+		embed.add_field(name="User Name:", value=f"{ctx.message.author}", inline=False) 		
+		embed.add_field(name="User ID", value=f"{ctx.message.author.id}", inline=False)     
+		embed.add_field(name="Server Name:", value=f"{ctx.message.server.name}", inline=False)
+		embed.add_field(name="Server ID:", value=f"{ctx.message.server.id}", inline=False) 		
+		await bot.send_message(channel, embed=embed)
+		embed = discord.Embed(title="Report", description=f"Your report has been sent, you will get a return.", color=0xff9393)
+		embed.add_field(name="Report", value=f"Report : {ideamsg}", inline=False)    
+		embed.add_field(name="User ID", value=f"Name: {ctx.message.author.id}", inline=False)    
+		embed.add_field(name="Author Name:", value=f"Name: {ctx.message.author}", inline=False)
+		embed.add_field(name="Author ID", value=f"Name: {ctx.message.author.id}", inline=False)
+		await bot.say(embed=embed)
             
 @bot.command(pass_context=True)
 async def sale(ctx, content=None, *, content2=None):
@@ -749,7 +864,7 @@ async def h(ctx):
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`", inline=True)
+                emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`", inline=True)
                 message = await bot.say(embed=emb)
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
