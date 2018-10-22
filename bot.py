@@ -123,46 +123,7 @@ async def on_message(message):
            await bot.send_message(message.channel, "no")
         if message.content.startswith('n٠o u'):	
            author = message.author     	
-           await bot.send_message(message.channel, "n٠o n٠o u")                      
-        if message.content.startswith('talk'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "ok")           
-        if message.content.startswith('my channel'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "your channel not good")          
-        if message.content.startswith('?'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "i٠٠٥dk") 
-        if message.content.startswith('idk'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "i٠dk")                      
-        if message.content.startswith('lol'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "lm٠ao")   
-        if message.content.startswith('lmao'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "٠l٠ol")                   
-        if message.content.startswith('anime'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "who weeb")           
-        if message.content.startswith('gucci'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "u ricH")           
-        if message.content.startswith('turk'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "kebab good")           
-        if message.content.startswith('english'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "england good language too")          
-        if message.content.startswith('xd'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "funny :joy: :ok_hand: :joy: :ok_hand:")       
-        if message.content.startswith('wut'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "whaat??")           
-        if message.content.startswith('kebab'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "i like")    
+
         if message.content.startswith('who created kermit'):	
            author = message.author     	
            await bot.send_message(message.channel, "lilcsz#5890 created me")  
