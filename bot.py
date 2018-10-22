@@ -665,6 +665,56 @@ async def userinfo(ctx, user: discord.Member):
    embed.add_field(name="Server Joined at", value=user.joined_at, inline=True) 
    embed.add_field(name="Discord Joined at", value=user.created_at, inline=True)
    await bot.say(embed=embed)                         
+@bot.command(pass_context = True, aliases=['tempmute','timemute'])
+async def tmute(ctx, member: discord.Member, time: int):
+     if ctx.message.author.server_permissions.manage_roles or is_owner:
+         try:
+            author = ctx.message.author
+            server = ctx.message.server     
+            perms = discord.Permissions(send_messages=False, read_messages=True)
+            if author is member:
+                lol = discord.Embed(title = 'Oops!', description = "You can't mute yourself", color=0x000000)
+                await bot.say(embed=lol)
+                return
+            elif discord.utils.get(server.roles, name='kermit-mute'):
+                pass
+            else: 
+                 await bot.create_role(server, name='kermit-mute', permissions=perms)
+            role = discord.utils.get(server.roles, name='kermit-mute')
+            await bot.add_roles(member, role)            
+            embed=discord.Embed(title="Muted", color=0x000000)
+            embed.add_field(name="**__User:__**", value="{}".format(member.mention), inline=False)
+            embed.add_field(name="**__Moderator:__**", value="**{}**".format(ctx.message.author.mention), inline=False)
+            embed.add_field(name="**__Time:__**", value="**{}**".format(time), inline=False)            
+
+            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/469160650132815900/503993941159575553/686855_mute_512x512.png')
+            await bot.say(embed=embed)
+            overwrite = discord.PermissionOverwrite()
+            overwrite.send_messages = False
+            overwrite.read_messages = True
+            overwrite.add_reactions = False
+            overwrite.send_tts_messages = False
+            overwrite.read_message_history = False
+            overwrite.create_instant_invite = False
+            overwrite.administrator = False
+            overwrite.attach_files = False
+            overwrite.manage_messages = False
+            overwrite.mention_everyone = False
+            overwrite.use_external_emojis = False
+            overwrite.manage_permissions = False
+            await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
+            await asyncio.sleep(time*60)             
+            await bot.remove_roles(member, role)            
+            
+         except discord.errors.Forbidden:
+             poop = discord.Embed(title = "❎ No Permission", description= "I don't have the `MANAGE_CHANNEL/MANAGE_ROLES` permission.", color = 0x000000)
+             msg = await bot.say(embed=poop)
+             return
+     else:
+        embed=discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0x000000)
+        await bot.say(embed=embed)
+        return
+        await asyncio.sleep(time)       
 @bot.command(pass_context = True, aliases=['Mute','m'])
 async def mute(ctx, member: discord.Member):
      if ctx.message.author.server_permissions.manage_roles or is_owner:
@@ -685,8 +735,9 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="Muted", color=0x000000)
             embed.add_field(name="**__User:__**", value="{}".format(member.mention), inline=False)
             embed.add_field(name="**__Moderator:__**", value="**{}**".format(ctx.message.author.mention), inline=False)
+            embed.add_field(name="**__Time:__**", value="**{}**".format(time), inline=False)            
 
-            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/469160650132815900/500993296756375553/Mute_1.png')
+            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/469160650132815900/503993941159575553/686855_mute_512x512.png')
             await bot.say(embed=embed)
             overwrite = discord.PermissionOverwrite()
             overwrite.send_messages = False
@@ -705,10 +756,7 @@ async def mute(ctx, member: discord.Member):
          except discord.errors.Forbidden:
              poop = discord.Embed(title = "❎ No Permission", description= "I don't have the `MANAGE_CHANNEL/MANAGE_ROLES` permission.", color = 0x000000)
              msg = await bot.say(embed=poop)
-             return
-     else:
-        embed=discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0x000000)
-        await bot.say(embed=embed)        
+
         
 @bot.command(pass_context = True)
 async def givemod(ctx, member: discord.Member):
@@ -811,7 +859,7 @@ async def h(ctx):
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          if str(reaction.reaction.emoji) == "🔍":
          	em = discord.Embed(color=0xea7938)
-         	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`, `k!createtxtchannel`, `k!createvcchannel`", inline=True)
+         	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`, `k!createtxtchannel`, `k!createvcchannel`, `k!tempmute`", inline=True)
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
