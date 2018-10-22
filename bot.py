@@ -474,7 +474,7 @@ async def play(ctx, *,url):
        
     
     else:
-        queues[server.id] = [player]
+        queues[server.id] = player
 
         await bot.say("**🔎 Research of** `" + player.title + "`** In ...**")
         await bot.say("⏳ **Music added to queue !**")
