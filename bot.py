@@ -94,6 +94,21 @@ async def on_message(message):
         if message.content.startswith('russian'):	
            author = message.author     	
            await bot.send_message(message.channel, "<:vodka:504240236239519745>") 
+        if message.content.startswith('Russian'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+        if message.content.startswith('Vodka'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+        if message.content.startswith('vodka'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+        if message.content.startswith('ruski'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+        if message.content.startswith('Ruski'):	
+           author = message.author     	
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 		
         
   
         	        
