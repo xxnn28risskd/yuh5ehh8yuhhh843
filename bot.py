@@ -180,8 +180,8 @@ async def emoji(ctx, emoji: discord.Emoji=None):
 	else:	
 	   embed = discord.Embed(title="Emoji", colour=(0x36393E))
 	   embed.set_image(url=emoji.url)
-   	embed.set_footer(text=f'Kermit | lilcsz#5890 Requested by {ctx.message.author}', icon_url=bot.user.avatar_url)
-   	await bot.say(embed=embed)	
+	   embed.set_footer(text=f'Kermit | lilcsz#5890 Requested by {ctx.message.author}', icon_url=bot.user.avatar_url)
+	   await bot.say(embed=embed)	
 	
 	
 @bot.command(pass_context=True)
