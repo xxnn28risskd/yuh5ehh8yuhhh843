@@ -157,12 +157,12 @@ async def idea(ctx, *, ideamsg: str=None):
 		await bot.say(embed=embed) 
 	
 @bot.command(pass_context=True)
-async def reminder(ctx, content=None, time: int=None):
+async def reminder(ctx, time: int=None, *, content):
 	if content is None:
-     		await bot.say("Enter time/content, example: k!reminder Game 10")
+     		await bot.say("Enter time/content, example: k!reminder 5 Drink water")
      		return
 	if time is None:
-     		await bot.say("Enter time/content, example: k!reminder Game 10")		
+     		await bot.say("Enter time/content, example: k!reminder 10 Play games")		
 	else:
 		embed = discord.Embed(colour=discord.Colour.green())	 
 		embed.add_field(name="Remind",value="**{}** I'm will remind you **{}** minute later".format(ctx.message.author, time,inline=True))
@@ -170,8 +170,7 @@ async def reminder(ctx, content=None, time: int=None):
 		await asyncio.sleep(time*60)
 		embed = discord.Embed(colour=0x000000)	
 		embed.add_field(name="Remind",value="**{}** You have reminder, your reminder: **{}** ".format(ctx.message.author, content))
-		await bot.send_message(ctx.message.author, embed=embed)	
-	
+		await bot.send_message(ctx.message.author, embed=embed)
 	
 	
 	
