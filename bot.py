@@ -91,42 +91,11 @@ async def on_message(message):
         if message.content.startswith('kermit'): 
            author = message.author     	
            await bot.send_message(message.channel, f"Yes "+author.mention+", just say k!help for help.")   
-        if message.content.startswith('owu'):	
+        if message.content.startswith('russian'):	
            author = message.author     	
-           await bot.send_message(message.channel, "ْowu uwu what is!?!?") 
-        if message.content.startswith('uwu'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "ْowu uwu what is!?!?")           
-        if message.content.startswith('guys'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "yes")           
-        if message.content.startswith('for what?, my prefix k!'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "ْowu uwu what is!?!?")           
-        if message.content.startswith('look'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "ok")         
-        if message.content.startswith('oof'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "٠oo٠f roblox so goOd")             
-        if message.content.startswith('xxxtentacion'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "Rip, and respect from Kermit")
-        if message.content.startswith('lil pump'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "gucci gang gucci gang")              
-        if message.content.startswith('good'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "not good")                          
-        if message.content.startswith('yes'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "no")
-        if message.content.startswith('n٠o u'):	
-           author = message.author     	
-
-        if message.content.startswith('who created kermit'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "lilcsz#5890 created me")  
+           await bot.send_message(message.channel, "ْ<:vodka:504240236239519745>") 
+        
+  
         	        
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
