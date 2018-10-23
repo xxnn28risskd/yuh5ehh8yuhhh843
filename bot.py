@@ -93,7 +93,7 @@ async def on_message(message):
            await bot.send_message(message.channel, f"Yes "+author.mention+", just say k!help for help.")   
         if message.content.startswith('russian'):	
            author = message.author     	
-           await bot.send_message(message.channel, "ْ<:vodka:504240236239519745>") 
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 
         
   
         	        
