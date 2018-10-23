@@ -171,7 +171,17 @@ async def reminder(ctx, time: int=None, *, content):
 		embed = discord.Embed(colour=0x000000)	
 		embed.add_field(name="Remind",value="**{}** You have reminder, your reminder: **{}** ".format(ctx.message.author, content))
 		await bot.send_message(ctx.message.author, embed=embed)
-	
+		
+@bot.command(pass_context = True, aliases=['e','emojisteal','getemoji','emote'])
+async def emoji(ctx, emoji: discord.Emoji=None):
+	if emoji is None:
+	   embed = discord.Embed(title="Emoji is none", colour=(0x36393E))		
+	   await bot.say(embed=embed)
+	else:	
+	   embed = discord.Embed(title="Emoji", colour=(0x36393E))
+	   embed.set_image(url=emoji.url)
+   	embed.set_footer(text=f'Kermit | lilcsz#5890 Requested by {ctx.message.author}', icon_url=bot.user.avatar_url)
+   	await bot.say(embed=embed)	
 	
 	
 @bot.command(pass_context=True)
@@ -865,7 +875,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`", inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal`", inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
