@@ -140,7 +140,26 @@ async def idea(ctx, *, ideamsg: str=None):
 		embed.add_field(name="Author Name:", value=f"Name: {ctx.message.author}", inline=False)
 		embed.add_field(name="Author ID", value=f"Name: {ctx.message.author.id}", inline=False)
 		await bot.say(embed=embed) 
-		
+	
+@bot.command(pass_context=True)
+async def reminder(ctx, content=None, time: int=None):
+	if content is None:
+     		await bot.say("Enter time/content, example: k!reminder Game 10")
+     		return
+	if time is None:
+     		await bot.say("Enter time/content, example: k!reminder Game 10")		
+	else:
+		embed = discord.Embed(colour=discord.Colour.green())	 
+		embed.add_field(name="Remind",value="**{}** I'm will remind you **{}** minute later".format(ctx.message.author, time,inline=True))
+		await bot.say(embed=embed)		
+		await asyncio.sleep(time*60)
+		embed = discord.Embed(colour=0x000000)	
+		embed.add_field(name="Remind",value="**{}** You have reminder, your reminder: **{}** ".format(ctx.message.author, content))
+		await bot.send_message(ctx.message.author, embed=embed)	
+	
+	
+	
+	
 @bot.command(pass_context=True)
 async def report(ctx, *, ideamsg: str=None):
 	if ideamsg is None:
@@ -832,7 +851,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`", inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`", inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
