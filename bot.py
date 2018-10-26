@@ -347,9 +347,9 @@ async def status1(ctx):
 		
 @bot.command(pass_context = True, aliases=['rr','ro'])
 async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=None, user3: discord.User=None, user4: discord.User=None, user5: discord.User=None, user6: discord.User=None, user7: discord.User=None):
-	reponses = ["{ctx.message.author)", "{user1}","{user2}", "{user3}"]	
+	reponses = ["{ctx.message.author}", "{user1}","{user2}", "{user3}"]	
 	select = random.choice(reponses) 
-	if select == "{ctx.message.author)":
+	if select == "{ctx.message.author}":
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user1} Survived!", inline=True)
 		await bot.say(embed=embed)	
