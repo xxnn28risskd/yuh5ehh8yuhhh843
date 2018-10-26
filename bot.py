@@ -353,12 +353,20 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user1} Survived!", inline=True)
 		await bot.say(embed=embed)	
+@bot.command(pass_context = True, aliases=['rr','ro'])
+async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=None, user3: discord.User=None, user4: discord.User=None, user5: discord.User=None, user6: discord.User=None, user7: discord.User=None):
+	reponses = ["{ctx.message.author}", "{user1}","{user2}", "{user3}"]	
+	select = random.choice(reponses) 
+	if select == "{ctx.message.author}":
+		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
+		embed.add_field(name="Game", value=f"{user1} Survived!", inline=True)
+		await bot.say(embed=embed)	
 		await asyncio.sleep(3)
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{ctx.message.author} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)		
-	if select == "{user3)":		
+	elif select == "{user3)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user2} Survived!", inline=True)
 		await bot.say(embed=embed)	
@@ -375,7 +383,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user3} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)		
-	if select == "{user2)":		
+	elif select == "{user2)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user3} Survived!", inline=True)
 		await bot.say(embed=embed)	
@@ -392,7 +400,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user2} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)
-	if select == "{user1)":		
+	elif select == "{user1)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user3} Survived!", inline=True)
 		await bot.say(embed=embed)	
@@ -409,6 +417,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user1} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)              
+		
 @bot.command(pass_context=True)
 async def hack(ctx, hack: discord.User=None):	
    if hack is None:
