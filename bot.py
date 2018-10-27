@@ -43,35 +43,12 @@ bot = commands.Bot(command_prefix='k!')
 bot.remove_command('help')
 
 
-from discord import opus
-OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
-             'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
-
-
-def load_opus_lib(opus_libs=OPUS_LIBS):
-    if opus.is_loaded():
-        return True
-
-    for opus_lib in opus_libs:
-            try:
-                opus.load_opus(opus_lib)
-                return
-            except OSError:
-                pass
-
-    raise RuntimeError('Could not load an opus lib. Tried %s' %
-                       (', '.join(opus_libs)))
-load_opus_lib()
 
 @bot.event
 async def on_ready():
     print("hi")
     await bot.change_presence(game=discord.Game(name='now '+str(len(bot.servers))+' servers and'' '+str(len(set(bot.get_all_members())))+' user! ', type=1))
-opts = {
-            'default_search': 'auto',
-            'quiet': True,
-        }    
- 
+
 
 
 def check_queue(id):
