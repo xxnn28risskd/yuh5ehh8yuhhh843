@@ -656,6 +656,25 @@ async def role(ctx, user:discord.User,*,role:discord.Role):
             await bot.remove_roles(user, role)
             return await bot.say(":white_check_mark: Succesfully deleted **{}** role from **{}**".format(role, user))
 
+@bot.command(pass_context=True)		
+async def saveprofile(ctx):
+        channel = bot.get_channel('505804634527367168')
+        author_id = str(ctx.message.author.id)
+        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+            coins = json.load(f)
+        if author_id in coins:
+            embed = discord.Embed(colour=(0x36393E), title='New Save: {}'.format(ctx.message.author)) 
+            embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins']))
+            embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
+            embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            await bot.send_message(channel, embed=embed)
+            embed = discord.Embed(title="Save",description="Your save has been sent.", inline=True)
+            embed.add_field(name="User ID", value=f"Name: {ctx.message.author.id}", inline=False)    
+            embed.add_field(name="Author Name:", value=f"Name: {ctx.message.author}", inline=False)
+            embed.add_field(name="Author ID", value=f"Name: {ctx.message.author.id}", inline=False)
+            await bot.say(embed=embed)         
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)	
  
 @bot.command(pass_context=True)
 @commands.has_permissions(manage_roles=True)
