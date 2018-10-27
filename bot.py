@@ -87,7 +87,37 @@ async def on_message(message):
            author = message.author     	
            await bot.send_message(message.channel, "<:vodka:504240236239519745>") 		
         
-  
+  @bot.event
+async def on_command_error(error, ctx):
+    if isinstance(error, commands.CommandNotFound):
+
+        embed = discord.Embed(colour=(0x36393E))
+        embed.add_field(name="<:error:501020141643890703> **Error !**", value=f"**This command can't be found ! **``Type k!help!``", inline=True)
+        await bot.send_message(ctx.message.channel, embed=embed)
+        
+        
+    elif isinstance(error, commands.CommandOnCooldown):
+        embed = discord.Embed(colour=(0x36393E))
+        embed.add_field(name=":warning: Warning!", value="The command is on cooldown!\nRetry in **{} seconds!**".format(int(error.retry_after)), inline=True)
+        await bot.send_message(ctx.message.channel, embed=embed)
+
+    elif isinstance(error, commands.NoPrivateMessage):
+        try:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="<:error:501020141643890703> Error !", value="This command can't be executed here !\nIf you want to try this command go on a Discord server where I am.", inline=True)
+            await bot.send_message(ctx.message.author, embed=embed)
+            return
+
+        except discord.Forbidden:
+            pass
+
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(colour=(0x36393E))
+        embed.add_field(name="<:error:501020141643890703> Error!", value="Missing arguments!", inline=True)
+        await bot.send_message(ctx.message.channel, embed=embed)
+
+    else:
+        raise error
         	        
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
