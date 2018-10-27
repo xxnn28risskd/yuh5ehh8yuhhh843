@@ -916,7 +916,7 @@ async def kill(ctx, user: discord.Member):
         if not str(user.id) in coins:
             await bot.say('*Looks like the buddy that u tryna kill didnt set a profile...')
             return
-        if str(ctx.author.id) in coins:
+        if str(ctx.message.author.id) in coins:
             if coins[str(ctx.message.author.id)]["type"] == 'killer':
                 if coins[str(user.id)]['coins'] > 0:
                     a = [True, False]
@@ -927,14 +927,14 @@ async def kill(ctx, user: discord.Member):
                 if kill_result:
                     coins_1 = coins[str(user.id)]['coins']
                     final = random.randint(0,int(coins_1/3))
-                    await bot.say('**Success!**' + ctx.message.author.mention + 'You robbed {} and you earned ``{}`` coins!  <:coins:505759360908132352>'.format(user.name, final))
+                    await bot.say('**Success!**' + ctx.message.author.mention + 'You killed {} and you earned ``{}`` coins!  <:coins:505759360908132352>'.format(user.name, final))
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
                     await bot.say(':astonished: *You have been cought while trying to kill {}!! Try again l8er!*'.format(user.name) + ctx.message.author.mention)
                     return
             else:
-                await bot.say('**You Are not a thief type or u didnt set a profile , to do that use ``<>setprofile`` or ``<>changetype``**')
+                await bot.say('**You Are not a killer type or u didnt set a profile , to do that use ``<>setprofile`` or ``<>changetype``**')
                 return
         else:
             await bot.say('**You didnt set a profile! set a profile with the command ``<>setprofile``**'+ ctx.message.author.mention)
@@ -948,7 +948,7 @@ async def hack2(ctx, user: discord.Member):
         with open("coins.json", "r") as f:
             coins = json.load(f)
         if not str(user.id) in coins:
-            await bot.say('*Looks like the buddy that u tryna fight didnt set a profile...*')
+            await bot.say('*Looks like the buddy that u tryna hack didnt set a profile...*')
             return
         if str(ctx.message.author.id) in coins:
             if coins[str(ctx.message.author.id)]["type"] == 'hacker':
@@ -961,7 +961,7 @@ async def hack2(ctx, user: discord.Member):
                 if hack_result:
                     coins_1 = coins[str(user.id)]['coins']
                     final = random.randint(1,int(coins_1/3))
-                    await ctx.send('<:fighter:503649321250586634> **Success!** ' + ctx.message.author.mention + ' You won the hack and you earned ``{}`` coins! <:coins:505759360908132352>'.format(final))
+                    await bot.say(**Success!** ' + ctx.message.author.mention + ' You won the hack and you earned ``{}`` coins! <:coins:505759360908132352>'.format(final))
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
@@ -1026,7 +1026,7 @@ async def setprofile(ctx, type_1: str= None):
 async def changetype(ctx, type_1: str= None):
         '''Change your type - hacker/killer'''
         author_id = str(ctx.message.author.id)
-        with open("/emulated/storage/0/discordbot/coins.json", "r") as f:
+        with open("coins.json", "r") as f:
             coins = json.load(f)
         if type_1 == None:
             embed = discord.Embed(colour=(0x36393E))
@@ -1069,7 +1069,7 @@ async def slot(ctx, amount: int):
 
         """ Roll the slot machine """
         author_id = str(ctx.message.author.id)
-        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+        with open("coins.json", "r") as f:
             coins = json.load(f)
         if amount > coins[author_id]['coins']:
             await bot.say('***<:hat:492034281959325707> You cannot bet on this amount of coins cause its bigger than your coin balance , your coins -  {}***'.format(coins[author_id]['coins']))
@@ -1158,7 +1158,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal` , `k!russianroullete`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal` , `k!russianroullete`, `k!balance` `k!slot` k!work`, `k!setprofile`, `k!kill`, `k!hack2`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
