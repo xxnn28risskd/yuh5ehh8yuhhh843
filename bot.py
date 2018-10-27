@@ -930,6 +930,240 @@ async def serverinfo(ctx, *, msg=""):
                 em.set_footer(text='Server ID: %s' % server.id)
                 await bot.say(embed=em)
                 
+		
+@bot.command(pass_context=True)
+async def kill(ctx, user: discord.Member):
+        '''rob a specified user, earn coins'''
+        with open("coins.json", "r") as f:
+            coins = json.load(f)
+        if not str(user.id) in coins:
+            await bot.say('*Looks like the buddy that u tryna kill didnt set a profile...')
+            return
+        if str(ctx.author.id) in coins:
+            if coins[str(ctx.message.author.id)]["type"] == 'killer':
+                if coins[str(user.id)]['coins'] > 0:
+                    a = [True, False]
+                    kill_result = random.choice(a)
+                else:
+                    await bot.say('*Looks like the buddy that u tryna rob got no money...* **GO KILL SOMEONE IN YOUR SIZE**')
+                    return
+                if kill_result:
+                    coins_1 = coins[str(user.id)]['coins']
+                    final = random.randint(0,int(coins_1/3))
+                    await bot.say('**Success!**' + ctx.message.author.mention + 'You robbed {} and you earned ``{}`` coins!  <:coins:505759360908132352>'.format(user.name, final))
+                    coins[str(user.id)]['coins'] -= final
+                    coins[str(ctx.message.author.id)]['coins'] += final
+                else:
+                    await bot.say(':astonished: *You have been cought while trying to kill {}!! Try again l8er!*'.format(user.name) + ctx.message.author.mention)
+                    return
+            else:
+                await bot.say('**You Are not a thief type or u didnt set a profile , to do that use ``<>setprofile`` or ``<>changetype``**')
+                return
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``<>setprofile``**'+ ctx.message.author.mention)
+            return 
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)
+
+@bot.command(pass_context=True)
+async def hack2(ctx, user: discord.Member):
+        '''fight a specified user, earn coins'''
+        with open("coins.json", "r") as f:
+            coins = json.load(f)
+        if not str(user.id) in coins:
+            await bot.say('*Looks like the buddy that u tryna fight didnt set a profile...*')
+            return
+        if str(ctx.message.author.id) in coins:
+            if coins[str(ctx.message.author.id)]["type"] == 'hacker':
+                if coins[str(user.id)]['coins'] > 0:
+                    a = [True, False]
+                    hack_result = random.choice(a)
+                else:
+                    await bot.say('*Looks like the buddy that u tryna fight got no money...* **GO HACK SOMEONE IN YOUR SIZE**')
+                    return
+                if hack_result:
+                    coins_1 = coins[str(user.id)]['coins']
+                    final = random.randint(1,int(coins_1/3))
+                    await ctx.send('<:fighter:503649321250586634> **Success!** ' + ctx.message.author.mention + ' You won the hack and you earned ``{}`` coins! <:coins:505759360908132352>'.format(final))
+                    coins[str(user.id)]['coins'] -= final
+                    coins[str(ctx.message.author.id)]['coins'] += final
+                else:
+                    await bot.say(':astonished:  **You ``lost!`` Try again l8er!**' + ctx.message.author.mention)
+                    return
+            else:
+                await bot.say('**You Are not a warrior type or u didnt set a profile , to do that use ``setprofile`` or ``<>changetype``**')
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
+            return
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)
+
+
+
+@bot.command(pass_context=True, aliases=['cash', 'money', '$'])
+@commands.cooldown(1.0, 300.0, commands.BucketType.user)
+async def work(ctx):
+        '''Take a loan from the bank!'''
+        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+            coins = json.load(f)
+        if str(ctx.message.author.id) in coins:
+            amount = random.randint(0,1000)
+            works = ["**:basketball: You go out and play professional basketball. ", "**💻 You go out and work as a sysadmin. ", "**<:bagofmoney:505431842929770496> You go out and work as a economist.", "**:soccer: You go out and work as a footballer ", "**:peanuts: You go out and work as a peanut dealer. "]
+            await bot.say(random.choice(works) + "You will recieve the money in 5 minutes**")
+            await asyncio.sleep(300)
+            coins[str(ctx.message.author.id)]['coins'] += amount
+            await bot.say(ctx.message.author.mention + ' *Added ``{}$`` into your bank account! <a:coins:505340842743955457>*'.format(amount))
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)
+
+@bot.command(pass_context=True)
+async def setprofile(ctx, type_1: str= None):
+        '''Set a profile for earning coins'''
+        with open("coins.json", "r") as f:
+            coins = json.load(f)
+        if type_1 == None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="<:error:501020141643890703> Error",value='**Type arguement is missing, You need to decide what your types are, ``hacker`` or ``killer``**', inline=True)
+            await bot.say(embed=embed)
+            return
+            
+        if type_1 == 'hacker' or type_1 == 'killer':
+            if not str(ctx.message.author.id) in coins:
+                coins[ctx.message.author.id] = {}
+                coins[ctx.message.author.id]['coins'] = 0
+                coins[ctx.message.author.id]['type'] = type_1
+                await bot.say('*I`ve set a profile for you! start earning money!* <a:coins:505340842743955457>')
+            else:
+                await bot.say('**You already registerd, $amount - ``{}``, type - ``{}``**'.format(coins[str(ctx.message.author.id)]['coins'], coins[str(ctx.message.author.id)]['type']))
+
+        else:
+            await bot.say('**You need to decide what your type is, ``hacker`` or ``killer``**')
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)
+
+    
+
+@bot.command(pass_context=True, aliases=['cht'])
+async def changetype(ctx, type_1: str= None):
+        '''Change your type - hacker/killer'''
+        author_id = str(ctx.message.author.id)
+        with open("/emulated/storage/0/discordbot/coins.json", "r") as f:
+            coins = json.load(f)
+        if type_1 == None:
+            embed = discord.Embed(colour=(0x36393E))
+            embed.add_field(name="<:error:501020141643890703> Error",value='**Type arguement is missing, You need to decide what your types are, ``hacker`` or ``killer``**', inline=True)
+            await bot.say(embed=embed)
+            return
+
+        if author_id in coins:
+            if type_1 == 'hacker' or type_1 == 'killer':
+                coins[str(ctx.message.author.id)]['type'] = type_1
+                await bot.say('*I`ve set new type for you! start earning money!* <a:coins:505340842743955457>')
+            
+            else:
+                await bot.say('**You need to decide what your type is, ``hacker`` or ``killer``**')
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
+
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)
+
+
+
+@bot.command(aliases=["balance", "bal"], pass_context=True)
+async def profile(ctx):
+        author_id = str(ctx.message.author.id)
+        with open("coins.json", "r") as f:
+            coins = json.load(f)
+        if author_id in coins:
+            embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(ctx.message.author)) 
+            embed.add_field(name='<:coins:505759360908132352> Coins',value=' {}'.format(coins[author_id]['coins']))
+            embed.add_field(name='<:coins:505759360908132352>Type', value='{}'.format(coins[author_id]['type']))
+            embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            await bot.say(embed=embed)
+        else:
+            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
+
+
+@bot.command(pass_context=True)
+async def slot(ctx, amount: int):
+
+        """ Roll the slot machine """
+        author_id = str(ctx.message.author.id)
+        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+            coins = json.load(f)
+        if amount > coins[author_id]['coins']:
+            await bot.say('***<:hat:492034281959325707> You cannot bet on this amount of coins cause its bigger than your coin balance , your coins -  {}***'.format(coins[author_id]['coins']))
+            return
+        if amount < 0:
+            await bot.say('Wow... dont even try this')
+        if not author_id in coins:
+            await bot.say('**You did not set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
+            return
+
+        emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
+
+        a = random.choice(emojis)
+        b = random.choice(emojis)
+        c = random.choice(emojis)
+
+        a1 = random.choice(emojis)
+        b1 = random.choice(emojis)
+        c1 = random.choice(emojis)
+
+        a2 = random.choice(emojis)
+        b2 = random.choice(emojis)
+        c2 = random.choice(emojis)
+
+        slotmachine = f"**[ {a} {b} {c} ]\n{ctx.message.author.name}**,"
+
+        test = await bot.say(f"**SLOTS | <:777:504325063814676504>**\n\n{a1} : {b1} : {c1}\n\n{a} : {b} : {c} **«**\n\n{a2} : {b2} : {c2}")
+
+        t_end = time.time() + 4
+
+        while(time.time()<t_end):
+
+            a = random.choice(emojis)
+            b = random.choice(emojis)
+            c = random.choice(emojis)
+
+            a1 = random.choice(emojis)
+            b1 = random.choice(emojis)
+            c1 = random.choice(emojis)
+
+            a2 = random.choice(emojis)
+            b2 = random.choice(emojis)
+            c2 = random.choice(emojis)
+
+
+            await asyncio.sleep(1)
+            
+
+        if (a == b == c):
+        	
+
+            await bot.say(content=f"**SLOTS | <:777:504325063814676504>**\n\n{a1} : {b1} : {c1}\n\n{a} : {b} : {c} **«**\n\n{a2} : {b2} : {c2}\n\n**{ctx.message.author.name}**, All matching, you won {amount} coins! 🎉")
+            coins[author_id]['coins'] += amount
+            await bot.delete_message(ctx.message)
+
+
+
+        elif (a == b) or (a == c) or (b == c):
+            await bot.say(content=f"**SLOTS | <:777:504325063814676504>**\n\n{a1} : {b1} : {c1}\n\n{a} : {b} : {c} **«**\n\n{a2} : {b2} : {c2}\n\n**{ctx.message.author.name}**, 2 in a row, you won {amount//2} coins! 🎉")
+            coins[author_id]['coins'] += amount//2
+
+        else:
+            await bot.say(content=f"**SLOTS | <:777:504325063814676504>**\n\n{a1} : {b1} : {c1}\n\n{a} : {b} : {c} **«**\n\n{a2} : {b2} : {c2}\n\n**{ctx.message.author.name}**, No match, you lost {amount} coins! 😢")
+            coins[author_id]['coins'] -= amount
+
+        with open("coins.json", "w") as f:
+            json.dump(coins, f)		
+		
+		
+		
+		
                 
 @bot.command(aliases=['help', 'helps', 'hp'], pass_context=True)
 async def h(ctx):
