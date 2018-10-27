@@ -978,7 +978,7 @@ async def hack2(ctx, user: discord.Member):
 
 
 @bot.command(pass_context=True, aliases=['cash', 'money', '$'])
-@commands.cooldown(1.0, 300.0, commands.BucketType.user)
+@commands.cooldown(1.0, 60.0, commands.BucketType.user)
 async def work(ctx):
         '''Take a loan from the bank!'''
         with open("coins.json", "r") as f:
