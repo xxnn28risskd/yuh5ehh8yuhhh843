@@ -961,7 +961,7 @@ async def hack2(ctx, user: discord.Member):
                 if hack_result:
                     coins_1 = coins[str(user.id)]['coins']
                     final = random.randint(1,int(coins_1/3))
-                    await bot.say(**Success!** ' + ctx.message.author.mention + ' You won the hack and you earned ``{}`` coins! <:coins:505759360908132352>'.format(final))
+                    await bot.say('**Success!** ' + ctx.message.author.mention + ' You won the hack and you earned ``{}`` coins! <:coins:505759360908132352>'.format(final))
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
