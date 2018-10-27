@@ -660,7 +660,7 @@ async def role(ctx, user:discord.User,*,role:discord.Role):
 async def saveprofile(ctx):
         channel = bot.get_channel('505804634527367168')
         author_id = str(ctx.message.author.id)
-        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+        with open("coins.json", "r") as f:
             coins = json.load(f)
         if author_id in coins:
             embed = discord.Embed(colour=(0x36393E), title='New Save: {}'.format(ctx.message.author)) 
