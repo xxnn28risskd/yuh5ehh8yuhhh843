@@ -87,7 +87,7 @@ async def on_message(message):
            author = message.author     	
            await bot.send_message(message.channel, "<:vodka:504240236239519745>") 		
         
-  @bot.event
+@bot.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandNotFound):
 
