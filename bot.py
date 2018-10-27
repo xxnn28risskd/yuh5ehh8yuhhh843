@@ -981,7 +981,7 @@ async def hack2(ctx, user: discord.Member):
 @commands.cooldown(1.0, 300.0, commands.BucketType.user)
 async def work(ctx):
         '''Take a loan from the bank!'''
-        with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+        with open("coins.json", "r") as f:
             coins = json.load(f)
         if str(ctx.message.author.id) in coins:
             amount = random.randint(0,1000)
