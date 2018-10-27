@@ -1158,7 +1158,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, k!work`, `k!setprofile`, `k!kill`, `k!hack2`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
