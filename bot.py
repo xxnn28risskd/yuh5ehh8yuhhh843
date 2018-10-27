@@ -85,8 +85,8 @@ async def on_message(message):
            await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
         if message.content.startswith('Ruski'):	
            author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 		
-        
+           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+		
 @bot.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandNotFound):
