@@ -1075,8 +1075,8 @@ async def profile(ctx):
             coins = json.load(f)
         if author_id in coins:
             embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(ctx.message.author)) 
-            embed.add_field(name='<:coins:505759360908132352> Coins',value=' {}'.format(coins[author_id]['coins']))
-            embed.add_field(name='<:coins:505759360908132352>Type', value='{}'.format(coins[author_id]['type']))
+            embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins']))
+            embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
             embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await bot.say(embed=embed)
         else:
@@ -1177,7 +1177,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
