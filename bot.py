@@ -445,7 +445,7 @@ async def hack(ctx, hack: discord.User=None):
      lmao = await bot.say(embed=embed) 
      await asyncio.sleep(6)        
      embed = discord.Embed(colour=discord.Colour.green()) 
-     device = ['Android 4.4.4.4','Android 5.1.1','Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
+     device = ['Android 4.4.4','Android 5.1.1','Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
      embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
      await bot.edit_message(lmao, embed=embed)
     
@@ -778,6 +778,7 @@ async def userinfo(ctx, user: discord.Member):
    embed.add_field(name="Discord Joined at", value=user.created_at, inline=True)
    await bot.say(embed=embed)                         
 @bot.command(pass_context = True, aliases=['tempmute','timemute'])
+@commands.has_permissions(manage_roles=True)
 async def tmute(ctx, member: discord.Member, time: int):
      if ctx.message.author.server_permissions.manage_roles or is_owner:
          try:
@@ -828,6 +829,7 @@ async def tmute(ctx, member: discord.Member, time: int):
         return
         await asyncio.sleep(time)       
 @bot.command(pass_context = True, aliases=['Mute','m'])
+@commands.has_permissions(manage_roles=True)
 async def mute(ctx, member: discord.Member):
      if ctx.message.author.server_permissions.manage_roles or is_owner:
          try:
