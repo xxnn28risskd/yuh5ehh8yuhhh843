@@ -817,7 +817,7 @@ async def tmute(ctx, member: discord.Member, time: int):
             await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
             await asyncio.sleep(time*60)             
             await bot.remove_roles(member, role)            
-            
+            return
          except discord.errors.Forbidden:
              poop = discord.Embed(title = "❎ No Permission", description= "I don't have the `MANAGE_CHANNEL/MANAGE_ROLES` permission.", color = 0x000000)
              msg = await bot.say(embed=poop)
@@ -847,8 +847,6 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="Muted", color=0x000000)
             embed.add_field(name="**__User:__**", value="{}".format(member.mention), inline=False)
             embed.add_field(name="**__Moderator:__**", value="**{}**".format(ctx.message.author.mention), inline=False)
-            embed.add_field(name="**__Time:__**", value="**{}**".format(time), inline=False)            
-
             embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/469160650132815900/503993941159575553/686855_mute_512x512.png')
             await bot.say(embed=embed)
             overwrite = discord.PermissionOverwrite()
