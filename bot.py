@@ -696,6 +696,8 @@ async def saveprofile(ctx):
             embed = discord.Embed(colour=(0x36393E), title='New Save: {}'.format(ctx.message.author)) 
             embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins']))
             embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
+	    embed.add_field(name="Author ID", value=f"Name: {ctx.message.author.id}", inline=False)
+	    embed.add_field(name="Server Name", value=f"Name: {ctx.message.server.name}", inline=False)
             embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await bot.send_message(channel, embed=embed)
             embed = discord.Embed(title="Save",description="Your save has been sent.", inline=True)
@@ -976,7 +978,7 @@ async def kill(ctx, user: discord.Member):
                 if kill_result:
                     coins_1 = coins[str(user.id)]['coins']
                     final = random.randint(0,int(coins_1/3))
-                    await bot.say('**Success!**' + ctx.message.author.mention + 'You killed {} and you earned ``{}`` coins!  <:coins:505759360908132352>'.format(user.name, final))
+                    await bot.say('**Success!** ' + ctx.message.author.mention + ' You killed {} and you earned ``{}`` coins!  <:coins:505759360908132352>'.format(user.name, final))
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
@@ -1014,7 +1016,7 @@ async def hack2(ctx, user: discord.Member):
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
-                    await bot.say(':astonished:  **You ``lost!`` Try again l8er!**' + ctx.message.author.mention)
+                    await bot.say(':astonished:  **You ``lost!`` Try again later!**' + ctx.message.author.mention)
                     return
             else:
                 await bot.say('**You Are not a warrior type or u didnt set a profile , to do that use ``setprofile`` or ``<>changetype``**')
@@ -1207,7 +1209,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!changetype`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
