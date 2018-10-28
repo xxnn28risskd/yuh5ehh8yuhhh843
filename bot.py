@@ -712,7 +712,7 @@ async def saveprofile(ctx):
 @commands.has_permissions(manage_roles=True)
 async def delrole(ctx, user:discord.User,*,role:discord.Role):
 	await bot.remove_roles(user, role)
-	await bot.say(' :white_check_mark: Succesfully deleted **{}** role from {}**'.format(role, user))
+	await bot.say(' :white_check_mark: Succesfully deleted **{}** role from **{}**'.format(role, user))
 
 @bot.command(pass_context=True)
 async def kick(ctx, user: discord.Member):
@@ -982,10 +982,10 @@ async def kill(ctx, user: discord.Member):
                     coins[str(user.id)]['coins'] -= final
                     coins[str(ctx.message.author.id)]['coins'] += final
                 else:
-                    await bot.say(':astonished: *You have been cought while trying to kill {}!! Try again l8er!*'.format(user.name) + ctx.message.author.mention)
+                    await bot.say(':astonished: *You have been cought while trying to kill {}!! Try again later!*'.format(user.name) + ctx.message.author.mention)
                     return
             else:
-                await bot.say('**You Are not a killer type or u didnt set a profile , to do that use ``<>setprofile`` or ``<>changetype``**')
+                await bot.say('**You Are not a killer type or u didnt set a profile , to do that use ``k!setprofile`` or ``k!changetype``**')
                 return
         else:
             await bot.say('**You didnt set a profile! set a profile with the command ``<>setprofile``**'+ ctx.message.author.mention)
@@ -1007,7 +1007,7 @@ async def hack2(ctx, user: discord.Member):
                     a = [True, False]
                     hack_result = random.choice(a)
                 else:
-                    await bot.say('*Looks like the buddy that u tryna fight got no money...* **GO HACK SOMEONE IN YOUR SIZE**')
+                    await bot.say('*Looks like the buddy that u tryna hack got no money...* **GO HACK SOMEONE IN YOUR SIZE**')
                     return
                 if hack_result:
                     coins_1 = coins[str(user.id)]['coins']
@@ -1019,7 +1019,7 @@ async def hack2(ctx, user: discord.Member):
                     await bot.say(':astonished:  **You ``lost!`` Try again later!**' + ctx.message.author.mention)
                     return
             else:
-                await bot.say('**You Are not a warrior type or u didnt set a profile , to do that use ``setprofile`` or ``<>changetype``**')
+                await bot.say('**You Are not a hacker type or u didnt set a profile , to do that use ``k!setprofile`` or ``k!changetype``**')
         else:
             await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
             return
@@ -1101,19 +1101,33 @@ async def changetype(ctx, type_1: str= None):
 
 
 @bot.command(aliases=["balance", "bal"], pass_context=True)
-async def profile(ctx):
-        author_id = str(ctx.message.author.id)
-        with open("coins.json", "r") as f:
-            coins = json.load(f)
-        if author_id in coins:
-            embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(ctx.message.author)) 
-            embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins']))
-            embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
-            embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await bot.say(embed=embed)
-        else:
-            await bot.say('**You didnt set a profile! set a profile with the command ``setprofile``**'+ ctx.message.author.mention)
-
+async def profile(ctx, user:discord.User=None):
+	    			if user is None: 	
+	    				with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+	    					coins = json.load(f)
+	    					author_id = str(ctx.message.author.id)	    				
+	    				if author_id in coins:
+	    					embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(ctx.message.author)) 
+	    					embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins'])) 		
+	    					embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
+	    					embed.add_field(name='Note',value='Dont forget to save, say k!saveprofile')
+	    					embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	    					await bot.say(embed=embed)
+	    			elif user is not None:
+	    						user_id = str(user.id)
+	    						with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+	    							coins = json.load(f)
+	    							user_id = str(user.id)
+	    							if user_id in coins:
+	    								embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(user), icon_url=user.avatar_url)	
+	    								embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[user_id]['coins']))	
+	    								embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[user_id]['type']))
+	    								embed.add_field(name='Note',value='Dont forget to save, say k!saveprofile')						
+	    								embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	    								await bot.say(embed=embed)
+	    							else:
+	    								embed = discord.Embed(colour=(0x36393E), title='User has not created a profile k!setprofile')
+	    								await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
 async def slot(ctx, amount: int):
