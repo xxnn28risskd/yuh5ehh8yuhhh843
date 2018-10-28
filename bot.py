@@ -1103,7 +1103,7 @@ async def changetype(ctx, type_1: str= None):
 @bot.command(aliases=["balance", "bal"], pass_context=True)
 async def profile(ctx, user:discord.User=None):
 	    			if user is None: 	
-	    				with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+	    				with open("coins.json", "r") as f:
 	    					coins = json.load(f)
 	    					author_id = str(ctx.message.author.id)	    				
 	    				if author_id in coins:
@@ -1115,7 +1115,7 @@ async def profile(ctx, user:discord.User=None):
 	    					await bot.say(embed=embed)
 	    			elif user is not None:
 	    						user_id = str(user.id)
-	    						with open("/storage/emulated/0/discordbot/coins.json", "r") as f:
+	    						with open("coins.json", "r") as f:
 	    							coins = json.load(f)
 	    							user_id = str(user.id)
 	    							if user_id in coins:
