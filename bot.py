@@ -71,7 +71,7 @@ async def on_message(message):
     	return
     else:
     	channel = bot.get_channel('506435592062500864')
-    	await bot.send_message(message.channel, f"```{author} in {author.server.name} Sent-message: {content}```") 
+    	await bot.send_message(message.channel, f"```{author} in {message.server.name} Sent-message: {content}```") 
     if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
     	return
     else:
@@ -90,7 +90,7 @@ async def on_message_delete(message):
     	return
     else:
     	channel = bot.get_channel('506435592062500864')
-    	await bot.send_message(message.channel, f"```{author} in {author.server.name} Delete-message: {content}```") 
+    	await bot.send_message(message.channel, f"```{author} in {message.server.name} Delete-message: {content}```") 
     if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
     	return
     else:
