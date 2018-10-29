@@ -70,13 +70,13 @@ async def on_message(message):
     if author.id == '488030289453645852' or author.id == '492666280483094538':
     	return
     else:
-    	channel = bot.get_channel('506435592062500864')
-    	await bot.send_message(message.channel, f"```{author} in {message.server.name} Sent-message: {content}```") 
+    	channel2 = bot.get_channel('506435592062500864')
+    	await bot.send_message(channel2, f"```{author} in {message.server.name} Sent-message: {content}```") 
     if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
     	return
     else:
-    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
-    	await bot.send_message(channel, f"```{message.author} Sent message in '{message.channel}' message: {message.content}```")
+    	channel1 = discord.utils.get(message.server.channels, name="kermit-logs")
+    	await bot.send_message(channel1, f"```{message.author} Sent message in '{message.channel}' message: {message.content}```")
     	await bot.process_commands(message)    	
     	await bot.process_commands(message)    	
 
@@ -89,13 +89,13 @@ async def on_message_delete(message):
     if author.id == '488030289453645852' or author.id == '492666280483094538':
     	return
     else:
-    	channel = bot.get_channel('506435592062500864')
-    	await bot.send_message(message.channel, f"```{author} in {message.server.name} Delete-message: {content}```") 
+    	channel1 = bot.get_channel('506435592062500864')
+    	await bot.send_message(channel1, f"```{author} in {message.server.name} Delete-message: {content}```") 
     if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
     	return
     else:
-    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
-    	await bot.send_message(channel, f"```{message.author} Deleted message in '{message.channel}' message: {message.content}```")
+    	channel1 = discord.utils.get(message.server.channels, name="kermit-logs")
+    	await bot.send_message(channel1, f"```{message.author} Deleted message in '{message.channel}' message: {message.content}```")
     	await bot.process_commands(message)
 		
 @bot.event
