@@ -66,20 +66,6 @@ def check_queue(id):
 @asyncio.coroutine
 async def on_message(message):
     author = message.author
-    content = message.content
-    if author.id == '488030289453645852' or author.id == '492666280483094538':
-    	return
-    else:
-    	channel2 = bot.get_channel('506435592062500864')
-    	await bot.send_message(channel2, f"```{author} in {message.server.name} Sent-message: {content}```") 
-    if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
-    	return
-    else:
-    	channel1 = discord.utils.get(message.server.channels, name="kermit-logs")
-    	await bot.send_message(channel1, f"```{message.author} Sent message in '{message.channel}' message: {message.content}```")
-    	await bot.process_commands(message)    	
-    	await bot.process_commands(message)    	
-
 
 # Logs deleted messages in console
 @bot.event
