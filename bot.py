@@ -139,7 +139,7 @@ async def on_command_error(error, ctx):
 @bot.command(pass_context=True)
 async def helplogs(ctx):
 	embed = discord.Embed(colour=(0x36393E))
-	embed.add_field(name="How to open logs?", value="Create kermit-logs channel in server", inline=True)
+	embed.add_field(name="How to open logs?", value="Create kermit-logs channel in server", inline=False)
 	embed.add_field(name="What does logs?", value="You see all deleted/sent messages and more...", inline=False)
 	embed.add_field(name="How to disable log system?", value="Delete kermit-logs channel", inline=False)	 
 	await bot.say(embed=embed)	                                     
