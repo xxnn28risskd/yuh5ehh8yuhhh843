@@ -61,31 +61,42 @@ def check_queue(id):
 
 
 
-
-@bot.event    
+#when someone send a message lmao
+@bot.event
+@asyncio.coroutine
 async def on_message(message):
-       	await bot.process_commands(message)
-        if message.content.startswith('kermit'): 
-           author = message.author     	
-           await bot.send_message(message.channel, f"Yes "+author.mention+", just say k!help for help.")   
-        if message.content.startswith('russian'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 
-        if message.content.startswith('Russian'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
-        if message.content.startswith('Vodka'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
-        if message.content.startswith('vodka'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
-        if message.content.startswith('ruski'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
-        if message.content.startswith('Ruski'):	
-           author = message.author     	
-           await bot.send_message(message.channel, "<:vodka:504240236239519745>") 	
+    author = message.author
+    content = message.content
+    if author.id == '488030289453645852' or author.id == '492666280483094538':
+    	return
+    else:
+    	channel = bot.get_channel('506435592062500864')
+    	await bot.send_message(message.channel, f"```{author} in {author.server.name} Sent-message: {content}```") 
+    if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
+    	return
+    else:
+    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	await bot.send_message(channel, f"```{message.author} Sent message in '{message.channel}' message: {message.content}```")
+    	await bot.process_commands(message)    	
+    	await bot.process_commands(message)    	
+
+
+# Logs deleted messages in console
+@bot.event
+async def on_message_delete(message):
+    author = message.author
+    content = message.content
+    if author.id == '488030289453645852' or author.id == '492666280483094538':
+    	return
+    else:
+    	channel = bot.get_channel('506435592062500864')
+    	await bot.send_message(message.channel, f"```{author} in {author.server.name} Delete-message: {content}```") 
+    if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
+    	return
+    else:
+    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	await bot.send_message(channel, f"```{message.author} Deleted message in '{message.channel}' message: {message.content}```")
+    	await bot.process_commands(message)
 		
 @bot.event
 async def on_command_error(error, ctx):
@@ -124,6 +135,28 @@ async def on_command_error(error, ctx):
         embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
         	        
+                   
+@bot.command(pass_context=True)
+async def helplogs(ctx):
+	embed = discord.Embed(colour=(0x36393E))
+	embed.add_field(name="How to open logs?", value="Create kermit-logs channel in server", inline=True)
+	embed.add_field(name="What does logs?", value="You see all deleted/sent messages and more...", inline=False)
+	embed.add_field(name="How to disable log system?", value="Delete kermit-logs channel", inline=False)	 
+	await bot.say(embed=embed)	                                     
+@bot.event
+async def on_member_join(member):      
+    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	embed = discord.Embed(colour=(0x36393E))
+    	embed.add_field(name="New Member:", value="Name: {member}", inline=True)    		
+    	await bot.send_message(channel, embed=embed)            
+@bot.event
+async def on_member_remove(member):
+    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	embed = discord.Embed(colour=(0x36393E))
+    	embed.add_field(name="New Left:", value="Name: {member}", inline=True)
+    	await bot.send_message(channel, embed=embed)		
+		
+		
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
         if len(content) > 35:
@@ -1209,16 +1242,14 @@ async def slot(ctx, amount: int):
             json.dump(coins, f)		
 		
 		
-		
-		
-                
 @bot.command(aliases=['help', 'helps', 'hp'], pass_context=True)
 async def h(ctx):
          embed = discord.Embed(colour=discord.Colour.green()) 
          embed.add_field(name='Moderation Commands',value="Reaction: 🔍", inline=True)
          embed.add_field(name='Fun Commands',value="Reaction: 🍹", inline=True)
          embed.add_field(name='Information Commands',value="Reaction: 💾", inline=True)
-         embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)                  
+         embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)
+         embed.add_field(name='Log System',value="Type k!helplogs", inline=True)                           
          message = await bot.say(embed=embed)   
          reaction = await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾'), await bot.add_reaction(message,'🎨')
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
