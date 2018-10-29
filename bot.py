@@ -61,11 +61,7 @@ def check_queue(id):
 
 
 
-#when someone send a message lmao
-@bot.event
-@asyncio.coroutine
-async def on_message(message):
-    author = message.author
+
 
 # Logs deleted messages in console
 @bot.event
