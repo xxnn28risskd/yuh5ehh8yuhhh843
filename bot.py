@@ -114,7 +114,7 @@ async def on_command_error(error, ctx):
         await bot.send_message(ctx.message.channel, embed=embed)
     elif isinstance(error, commands.errors.CommandInvokeError):        
         embed = discord.Embed(colour=(0x36393E))
-        embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions", inline=True)
+        embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions, i need all permissions!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
         	        
                    
@@ -127,13 +127,13 @@ async def helplogs(ctx):
 	await bot.say(embed=embed)	                                     
 @bot.event
 async def on_member_join(member):      
-    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	channel = discord.utils.get(server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
     	embed.add_field(name="New Member:", value="Name: {member}", inline=True)    		
     	await bot.send_message(channel, embed=embed)            
 @bot.event
 async def on_member_remove(member):
-    	channel = discord.utils.get(message.server.channels, name="kermit-logs")
+    	channel = discord.utils.get(server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
     	embed.add_field(name="New Left:", value="Name: {member}", inline=True)
     	await bot.send_message(channel, embed=embed)		
