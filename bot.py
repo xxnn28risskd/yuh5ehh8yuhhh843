@@ -125,22 +125,22 @@ async def helplogs(ctx):
 	embed.add_field(name="What does logs?", value="You see all deleted/sent messages and more...", inline=False)
 	embed.add_field(name="How to disable log system?", value="Delete kermit-logs channel", inline=False)	 
 	await bot.say(embed=embed)	                                     
+                   
 @bot.event
 async def on_member_join(member):      
     	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
-    	embed.add_field(name="New Member:", value=f"Name: {member}", inline=True) 
-	embed.set_image(url=member.avatar_url)
+    	embed.add_field(name="New Member:", value=f"Name: {member}", inline=True)
+    	embed.set_image(url=member.avatar_url)
     	await bot.send_message(channel1, embed=embed)            
 @bot.event
 async def on_member_remove(member):
     	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
     	embed.add_field(name="New Left:", value=f"Name: {member}", inline=True)
-	embed.set_image(url=member.avatar_url)
-    	await bot.send_message(channel1, embed=embed)		
-		
-		
+    	embed.set_image(url=member.avatar_url)
+    	await bot.send_message(channel1, embed=embed)
+	
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
         if len(content) > 35:
