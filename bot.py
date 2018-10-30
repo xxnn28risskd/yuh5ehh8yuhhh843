@@ -129,13 +129,15 @@ async def helplogs(ctx):
 async def on_member_join(member):      
     	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
-    	embed.add_field(name="New Member:", value="Name: {member}", inline=True)    		
+    	embed.add_field(name="New Member:", value=f"Name: {member}", inline=True) 
+	embed.set_image(url=member.avatar_url)
     	await bot.send_message(channel1, embed=embed)            
 @bot.event
 async def on_member_remove(member):
     	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
     	embed = discord.Embed(colour=(0x36393E))
-    	embed.add_field(name="New Left:", value="Name: {member}", inline=True)
+    	embed.add_field(name="New Left:", value=f"Name: {member}", inline=True)
+	embed.set_image(url=member.avatar_url)
     	await bot.send_message(channel1, embed=embed)		
 		
 		
