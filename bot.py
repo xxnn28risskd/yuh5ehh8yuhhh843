@@ -1010,7 +1010,7 @@ async def kill(ctx, user: discord.Member):
                 await bot.say('**You Are not a killer type or u didnt set a profile , to do that use ``k!setprofile`` or ``k!changetype``**')
                 return
         else:
-            await bot.say('**You didnt set a profile! set a profile with the command ``<>setprofile``**'+ ctx.message.author.mention)
+            await bot.say('**You didnt set a profile! set a profile with the command ``k!setprofile``**'+ ctx.message.author.mention)
             return 
         with open("coins.json", "w") as f:
             json.dump(coins, f)
@@ -1051,7 +1051,7 @@ async def hack2(ctx, user: discord.Member):
 
 
 @bot.command(pass_context=True, aliases=['cash', 'money', '$'])
-@commands.cooldown(1.0, 60.0, commands.BucketType.user)
+@commands.cooldown(1.0, 180.0, commands.BucketType.user)
 async def work(ctx):
         '''Take a loan from the bank!'''
         with open("coins.json", "r") as f:
@@ -1243,7 +1243,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!russianroullete`, `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!changetype`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
@@ -1286,7 +1286,7 @@ async def nickname(ctx, member: discord.Member=None, *, newnick=None):
 async def invitebot(ctx):
 	   embed=discord.Embed(title="Click Here", url="https://goo.gl/eWhCmz", description=" ", color=0xa8ddff)
 	   embed.set_author(name="Kermit Bot")
-	   embed.set_footer(text="You can add my bot to your server here")
+	   embed.set_footer(text="You can add bot to your server here")
 	   embed.set_thumbnail(url="https://image.ibb.co/cw36B9/unnamed-1.jpg")
 	   await bot.say(embed=embed)
 @bot.command()
