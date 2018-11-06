@@ -142,11 +142,12 @@ async def on_member_remove(member):
     	await bot.send_message(channel1, embed=embed)
 
 @bot.command(pass_context = True)
-async def search(ctx, *, msg = None):
-    if msg is None: 
-       await bot.say("Please specify a string")
-    else:
-       await bot.say('http://lmgtfy.com/?q=' + msg)	
+async def search(ctx, *, msg=None):
+    if msg is None:
+      await bot.say("Please specify a string")
+    else:
+      await bot.say('http://lmgtfy.com/?q=' + msg)
+
 	
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
