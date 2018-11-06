@@ -140,6 +140,13 @@ async def on_member_remove(member):
     	embed.add_field(name="New Left:", value=f"Name: {member}", inline=True)
     	embed.set_image(url=member.avatar_url)
     	await bot.send_message(channel1, embed=embed)
+
+@bot.command(pass_context = True)
+async def search(ctx, *, msg = None):
+    if not msg: 
+        await bot.say("Please specify a string")
+    else:
+        await bot.say('http://lmgtfy.com/?q=' + msg)	
 	
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
@@ -353,12 +360,7 @@ async def listenst(ctx, *,game):
             embed.add_field(name="ِMusic Status:", value="Succesfully music status name changed with: {}".format(game))
             await bot.say(embed=embed)
     else:
-    	    await bot.say("```Only bot owner```")    	    
-    	    
-	
-	
-	
-	
+    	    await bot.say("```Only bot owner```")    	  
 	
 	
     	         
@@ -1231,7 +1233,7 @@ async def h(ctx):
          embed = discord.Embed(colour=discord.Colour.green()) 
          embed.add_field(name='Moderation Commands',value="Reaction: 🔍", inline=True)
          embed.add_field(name='Fun Commands',value="Reaction: 🍹", inline=True)
-         embed.add_field(name='Information Commands',value="Reaction: 💾", inline=True)
+         embed.add_field(name='Information & Other Commands',value="Reaction: 💾", inline=True)
          embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)
          embed.add_field(name='Log System',value="Type k!helplogs", inline=True)                           
          message = await bot.say(embed=embed)   
@@ -1247,7 +1249,7 @@ async def h(ctx):
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Information Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`", inline=True)
+                emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`", inline=True)
                 message = await bot.say(embed=emb)
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
