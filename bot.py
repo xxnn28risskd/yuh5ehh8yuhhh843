@@ -143,7 +143,7 @@ async def on_member_remove(member):
 
 @bot.command(pass_context = True)
 async def search(ctx, *, msg = None):
-    if not msg: 
+    if msg is None: 
         await bot.say("Please specify a string")
     else:
         await bot.say('http://lmgtfy.com/?q=' + msg)	
