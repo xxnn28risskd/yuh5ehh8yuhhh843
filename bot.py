@@ -660,7 +660,22 @@ async def queue(ctx, url):
         queues[server.id] = [player]
     await bot.say('Video Has Been Queued!')
     
-    
+@bot.command(pass_context=True)
+async def donate():
+	 embed = discord.Embed(color=0x57ffbc)
+	 embed.add_field(name="PayPal Donate", value="https://paypal.me/lilcsz", inline=False)
+	 await bot.say(embed=embed)
+#like
+@bot.command(pass_context=True)
+async def number(ctx, nx: int=None):
+	if nx is None:
+		await bot.say("Please enter number, example: k!number 100")
+	else:
+	    numbers = random.randint(0, nx)
+	    embed = discord.Embed(color=0x120fc)
+	    embed.add_field(name="Random", value=f"{ctx.message.author}, Your random number is: {numbers}", inline=False)
+	    await bot.say(embed=embed)
+	
 @bot.command(pass_context=True)
 async def next(ctx, url):
     server = ctx.message.server
@@ -1236,7 +1251,8 @@ async def h(ctx):
          embed.add_field(name='Fun Commands',value="Reaction: 🍹", inline=True)
          embed.add_field(name='Information & Other Commands',value="Reaction: 💾", inline=True)
          embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)
-         embed.add_field(name='Log System',value="Type k!helplogs", inline=True)                           
+         embed.add_field(name='Log System',value="Type k!helplogs", inline=True)
+         embed.add_field(name='Help Server',value="https://discord.gg/ZptkguU", inline=True)	
          message = await bot.say(embed=embed)   
          reaction = await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾'), await bot.add_reaction(message,'🎨')
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
@@ -1246,11 +1262,11 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!number`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`", inline=True)
+                emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`, `k!donate`", inline=True)
                 message = await bot.say(embed=emb)
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
