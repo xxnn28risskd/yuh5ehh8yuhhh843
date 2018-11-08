@@ -815,16 +815,31 @@ async def spacefont(ctx, *, args):
     else:
         await bot.say(mesg)
     
-@bot.command(pass_context = True)
+@bot.command(pass_context=True, no_pm=True)
 async def userinfo(ctx, user: discord.Member):
-   embed = discord.Embed(name="Users Info!", description="Here's what I could find about the user.", color=0xff00f6)
-   embed.set_author(name="{}'s info.".format(user.name))
-   embed.add_field(name="Users Name", value=user.name, inline=True)
-   embed.add_field(name="Users ID", value=user.id, inline=True)
-   embed.add_field(name="Users Status", value=user.status, inline=True)   
-   embed.add_field(name="Server Joined at", value=user.joined_at, inline=True) 
-   embed.add_field(name="Discord Joined at", value=user.created_at, inline=True)
-   await bot.say(embed=embed)                         
+        ''' Informations about the mentionned user.'''
+        user_roles = []
+        for role in user.roles:
+            user_roles.append("**`" + role.name + "`**,")
+
+        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), title="{}'s informations".format(user.name), description="Here's what I can find about the user.", colour=(0x36393E))
+        embed.add_field(name="Nickname <:nickname:504335665010442279>", value=user.name, inline=True)
+        embed.add_field(name="ID <:userid:504333236286259210>", value=user.id, inline=True)
+
+        if user.status is discord.Status.do_not_disturb:
+            embed.add_field(name="Status <:info:504333761979351040>", value="<:dnd:502740433730928641> Do not disturb", inline=True)
+        elif user.status is discord.Status.offline:
+            embed.add_field(name="Status <:info:504333761979351040>", value="<:offline:502740422469222405> Offline", inline=True)
+        elif user.status is discord.Status.online:
+            embed.add_field(name="Status <:info:504333761979351040>", value="<:onlineee:502740403724746762> Online", inline=True)
+        elif user.status is discord.Status.idle:
+            embed.add_field(name="Status <:info:504333761979351040>", value="<:idle:502740413594075146> Idle", inline=True)
+
+        embed.add_field(name="Playing <:playing:504334016393117697>", value=user.game, inline=True)
+        embed.add_field(name="Is bot <:isbot:504335308641402880>", value=user.bot, inline=True)
+        embed.add_field(name="Roles <:roles:504335308100337664>", value=user_roles, inline=True)
+        embed.add_field(name="User join at :calendar:", value=user.joined_at)
+        embed.add_field(name="User created account at :calendar:", value=user.created_at)                         
 @bot.command(pass_context = True, aliases=['tempmute','timemute'])
 @commands.has_permissions(manage_roles=True)
 async def tmute(ctx, member: discord.Member, time: int):
@@ -1158,7 +1173,7 @@ async def profile(ctx, user:discord.User=None):
 	    					embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(ctx.message.author)) 
 	    					embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[author_id]['coins'])) 		
 	    					embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[author_id]['type']))
-	    					embed.add_field(name='Note',value='Dont forget to save, say k!saveprofile')
+	    					embed.add_field(name='Note',value='System is temporary!')
 	    					embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
 	    					await bot.say(embed=embed)
 	    			elif user is not None:
@@ -1170,7 +1185,7 @@ async def profile(ctx, user:discord.User=None):
 	    								embed = discord.Embed(colour=(0x36393E), title='{} Profile`s'.format(user), icon_url=user.avatar_url)	
 	    								embed.add_field(name='<a:coins:505340842743955457> Coins',value=' {}'.format(coins[user_id]['coins']))	
 	    								embed.add_field(name='<a:coins:505340842743955457> Type', value='{}'.format(coins[user_id]['type']))
-	    								embed.add_field(name='Note',value='Dont forget to save, say k!saveprofile')						
+	    								embed.add_field(name='Note',value='System is temporary!')						
 	    								embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
 	    								await bot.say(embed=embed)
 	    							else:
