@@ -112,13 +112,13 @@ async def on_command_error(error, ctx):
         embed = discord.Embed(colour=(0x36393E))
         embed.add_field(name="<:error:501020141643890703> Error!", value="Can't found argument!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
-    else:
-        return
     elif isinstance(error, commands.errors.CommandInvokeError):        
         embed = discord.Embed(colour=(0x36393E))
         embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions, i need all permissions!", inline=True)
-        await bot.send_message(ctx.message.channel, embed=embed)
-	
+        await bot.send_message(ctx.message.channel, embed=embed)		
+    else:
+        return
+    
 @bot.event
 async def on_reaction_add(reaction, user):
     roleChannelId = '506493904535945244'
