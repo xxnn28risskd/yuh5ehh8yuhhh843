@@ -841,7 +841,8 @@ async def userinfo(ctx, user: discord.Member):
         embed.add_field(name="Is bot <:isbot:504335308641402880>", value=user.bot, inline=True)
         embed.add_field(name="Roles <:roles:504335308100337664>", value=user_roles, inline=True)
         embed.add_field(name="User join at :calendar:", value=user.joined_at)
-        embed.add_field(name="User created account at :calendar:", value=user.created_at)                         
+        embed.add_field(name="User created account at :calendar:", value=user.created_at)             
+        await bot.say(embed=embed)
 @bot.command(pass_context = True, aliases=['tempmute','timemute'])
 @commands.has_permissions(manage_roles=True)
 async def tmute(ctx, member: discord.Member, time: int):
