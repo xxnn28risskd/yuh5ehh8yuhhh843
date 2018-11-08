@@ -47,7 +47,7 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print("hi")
-    await bot.change_presence(game=discord.Game(name='now '+str(len(bot.servers))+' servers and'' '+str(len(set(bot.get_all_members())))+' user! ', type=1))
+    await bot.change_presence(game=discord.Game(name='Status '+str(len(bot.servers))+' servers and'' '+str(len(set(bot.get_all_members())))+' user! ', type=1))
 
 
 
@@ -112,6 +112,8 @@ async def on_command_error(error, ctx):
         embed = discord.Embed(colour=(0x36393E))
         embed.add_field(name="<:error:501020141643890703> Error!", value="Can't found argument!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
+    else:
+        return
     elif isinstance(error, commands.errors.CommandInvokeError):        
         embed = discord.Embed(colour=(0x36393E))
         embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions, i need all permissions!", inline=True)
