@@ -158,6 +158,21 @@ async def search(ctx, *, msg=None):
     else:
       await bot.say('http://lmgtfy.com/?q=' + msg)
 
+@bot.command(pass_context=True)
+async def selfnickname(ctx, *, newnick=None):
+        if ctx.message.author.server_permissions.change_nickname:                      
+            if newnick is None:
+            	embed=discord.Embed(color=0x00ffd9)
+            	embed.add_field(name="Nickname None", value="**Please specify a nickname**")
+            	await bot.say(embed=embed)
+            	return
+            author = ctx.message.author
+            await bot.change_nickname(author, newnick)
+            embed=discord.Embed(color=0x00ffd9)
+            embed.add_field(name="Nickname changed:", value="** **")
+            embed.add_field(name="User:", value=f"{ctx.message.author}")
+            embed.add_field(name="New nickname:", value=f"{newnick}")
+            await bot.say(embed=embed)
 	
 @bot.command(name='byemom', aliases=['bm'], pass_context=True, no_pm=True)
 async def byemom(ctx, *, content):
@@ -1288,7 +1303,7 @@ async def h(ctx):
          	await bot.say(embed=em)  
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!number`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!number`, `k!selfnickname`",inline=True)
                 message = await bot.say(embed=em)
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
