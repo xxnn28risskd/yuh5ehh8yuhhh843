@@ -115,7 +115,7 @@ async def on_command_error(error, ctx):
         embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions, I'm need all permissions!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)		
     else:
-        return
+        raise error
     
 @bot.event
 async def on_reaction_add(reaction, user):
