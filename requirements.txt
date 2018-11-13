@@ -4,4 +4,4 @@ youtube-dl
 PyNaCl
 player
 image
-
+pyfiglet
