@@ -33,6 +33,8 @@ from PIL import ImageDraw
 from PIL import ImageOps 
 import PIL
 from PIL import Image
+from pyfiglet import figlet_format, FontError, FontNotFound
+from pyfiglet import figlet_format, FontError, FontNotFound
 
 
 discord.__version__
@@ -517,6 +519,23 @@ async def bans(ctx):
     x = '\n'.join([y.name for y in x])
     embed = discord.Embed(title = "List of The Banned Members", description = x, color = 0xFFFFF)
     return await bot.say(embed = embed) 
+
+@bot.command(pass_context=True)
+async def ascii(ctx, *, msg):
+		'Convert text to ascii art'
+		if ctx.invoked_subcommand is None:
+			if msg:
+				msg = str(figlet_format(msg.strip(), font='big'))
+				if len(msg) > 2000:
+					await bot.say('**Message too long, RIP.**')
+				else:
+					try:
+						await bot.say('```fix\n{}\n```'.format(msg))
+
+					except:
+						pass
+		else:
+			await bot.say('**Please input text to convert to ascii art. Ex: ``-ascii stuff``**')
 
 
 @bot.command(pass_context=True)
