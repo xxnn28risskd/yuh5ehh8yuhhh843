@@ -1429,34 +1429,42 @@ async def slot(ctx, amount: int):
         with open("coins.json", "w") as f:
             json.dump(coins, f)		
 		
-		
 @bot.command(aliases=['help', 'helps', 'hp'], pass_context=True)
 async def h(ctx):
-         embed = discord.Embed(colour=discord.Colour.green()) 
+         embed = discord.Embed(colour=discord.Colour.green())
+         embed.add_field(name='Music Commands',value="Reaction: 🎧", inline=True)          
          embed.add_field(name='Moderation Commands',value="Reaction: 🔍", inline=True)
          embed.add_field(name='Fun Commands',value="Reaction: 🍹", inline=True)
          embed.add_field(name='Information & Other Commands',value="Reaction: 💾", inline=True)
          embed.add_field(name='Image Commands',value="Reaction: 🎨", inline=True)
-         embed.add_field(name='Log System',value="Type k!helplogs", inline=True)
+         embed.add_field(name='Log System',value="Type k!helplogs", inline=True)        
          embed.add_field(name='Help Server',value="https://discord.gg/ZptkguU", inline=True)	
          message = await bot.say(embed=embed)   
-         reaction = await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾'), await bot.add_reaction(message,'🎨')
+         reaction = await bot.add_reaction(message,'🎧'), await bot.add_reaction(message,'🔍'), await bot.add_reaction(message,'🍹'), await bot.add_reaction(message,'💾'), await bot.add_reaction(message,'🎨')
          reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          if str(reaction.reaction.emoji) == "🔍":
          	em = discord.Embed(color=0xea7938)
          	em.add_field(name='Moderation Commands',value="`k!ban`, `k!kick`, `k!mute`, `k!unmute`, `k!warn`, `k!role`, `k!delrole`, `k!clear`, `k!nickname`, `k!createtxtchannel`, `k!createvcchannel`, `k!tempmute`", inline=True)
-         	await bot.say(embed=em)  
+         	await bot.say(embed=em)
+         	reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
                 em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!number`, `k!selfnickname`, `k!ascii`",inline=True)
                 message = await bot.say(embed=em)
+                reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`, `k!donate`", inline=True)
                 message = await bot.say(embed=emb)
+                reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "🎨":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
                 emb.add_field(name='Image Commands',value="`k!byemom`, `k!rip`, `k!sale`, `k!google`, `k!tweetdt`", inline=True)         
+                message = await bot.say(embed=emb)
+                reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
+         elif str(reaction.reaction.emoji) == "🎧":                                
+                emb =  discord.Embed(colour=discord.Colour.magenta()) 
+                emb.add_field(name='Music Commands',value="`k!play`, `k!skip`, `k!pause`, `k!resume`, `k!join`, `k!leave`                                                                              Note: Bot have some bugs with music commands", inline=True)         
                 message = await bot.say(embed=emb)
  
 @bot.command(pass_context = True)
