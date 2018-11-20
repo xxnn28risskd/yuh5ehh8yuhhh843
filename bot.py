@@ -769,8 +769,6 @@ async def createvcchannel(ctx, channel=None):
      	embed = discord.Embed(title="No permission".format(user.name), description="You need manage channels permission.", color=0x000000)
      	await bot.say(embed=embed)
 
-@bot.command(pass_context=True)
-
 
 @bot.command(pass_context=True)
 async def rps(context):
