@@ -1131,7 +1131,8 @@ async def clear(ctx, number):
     number = int(number) #Converting the amount of messages to delete to an integer
     async for x in bot.logs_from(ctx.message.channel, limit = number):
         mgs.append(x)
-    await bot.delete_messages(mgs)                                                                            
+    await bot.delete_messages(mgs)  
+    await bot.say(f"<a:okedoke:500731619213049856> **{number} Messages deleted.**")                                                                    
 @bot.command(aliases=['server', 'sinfo', 'si'], pass_context=True, invoke_without_command=True)
 async def serverinfo(ctx, *, msg=""):
         if ctx.invoked_subcommand is None:
@@ -1449,7 +1450,7 @@ async def h(ctx):
          	reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!balance`, `k!slot`, `k!work`, `k!setprofile`, `k!kill`, `k!hack2`, `k!changetype`, `k!saveprofile`, `k!number`, `k!selfnickname`, `k!ascii`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!number`, `k!selfnickname`, `k!ascii`",inline=True)
                 message = await bot.say(embed=em)
                 reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "💾":
@@ -1464,7 +1465,7 @@ async def h(ctx):
                 reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🎧":                                
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Music Commands',value="`k!play`, `k!skip`, `k!pause`, `k!resume`, `k!join`, `k!leave`                                                                              Note: Bot have some bugs with music commands", inline=True)         
+                emb.add_field(name='Music Commands',value="`k!play`, `k!skip`, `k!pause`, `k!resume`, `k!join`, `k!leave`                                                                              Note: Bot have some bugs with music commands + lilcsz#5890: I need buy host for music commands type k!donate.", inline=True)         
                 message = await bot.say(embed=emb)
  
 @bot.command(pass_context = True)
