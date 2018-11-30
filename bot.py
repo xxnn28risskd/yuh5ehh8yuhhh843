@@ -833,9 +833,13 @@ async def hug(ctx, user: discord.Member = None):
 async def cigaret(ctx):
       a = await bot.say("🚬🔥")
       await bot.edit_message(a, new_content="🚬💨")
+      await asyncio.sleep(1.5)
       await bot.edit_message(a, new_content="🚬💨💨💨")
+      await asyncio.sleep(3)      
       await bot.edit_message(a, new_content="🚬💨💨")
+      await asyncio.sleep(5)      
       await bot.edit_message(a, new_content="🚬💨")
+      await asyncio.sleep(1.3)      
       await bot.edit_message(a, new_content="🚬🗑️")
       
 @bot.command(pass_context=True)
