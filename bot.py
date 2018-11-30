@@ -828,7 +828,27 @@ async def hug(ctx, user: discord.Member = None):
         embed1 = discord.Embed(title="Awww I see you're lonely...")
         embed1.set_image(url='https://cdn.discordapp.com/attachments/485437458817744934/493845789609689089/1496032842_gif7.gif')
         await bot.say(embed=embed1)
+	
+@bot.command(pass_context=True)
+async def cigaret(ctx):
+      a = await bot.say("🚬🔥")
+      await bot.edit_message(a, new_content="🚬💨")
+      await bot.edit_message(a, new_content="🚬💨💨💨")
+      await bot.edit_message(a, new_content="🚬💨💨")
+      await bot.edit_message(a, new_content="🚬💨")
+      await bot.edit_message(a, new_content="🚬🗑️")
+      
+@bot.command(pass_context=True)
+async def deletethis(ctx):
+	embed = discord.Embed(title="Delete this!", color=0xff99f8)
+	links = ["https://cdn.discordapp.com/attachments/469160650132815900/518074599674478616/images_1.jpeg", "https://cdn.discordapp.com/attachments/469160650132815900/518074574974222366/uiyxrlqwavuz.jpg", "https://cdn.discordapp.com/attachments/469160650132815900/518074548361363466/images_2.jpeg", "https://cdn.discordapp.com/attachments/469160650132815900/518074474231365642/images_4.jpeg", "https://cdn.discordapp.com/attachments/469160650132815900/518074465217806351/images_5.jpeg", "https://cdn.discordapp.com/attachments/469160650132815900/518074448633659414/images_6.jpeg"]
+	embed.set_footer(text=' | Requested By : {}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	embed.set_image(url=random.choice(links))
+	await bot.say(embed=embed)
 
+@bot.command(pass_context=True)
+async def random_user(ctx):
+	await bot.say(random.choice(list(ctx.message.server.members)))
 
 @bot.command(pass_context=True)
 async def donate():
@@ -1450,7 +1470,7 @@ async def h(ctx):
          	reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)
          elif str(reaction.reaction.emoji) == "🍹":		
                 em = discord.Embed(colour=discord.Colour.purple()) 
-                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!number`, `k!selfnickname`, `k!ascii`",inline=True)
+                em.add_field(name='Fun Commands',value="`k!dice`, `k!rateidiot`, `k!rate`, `k!anonim_msg`, `k!say`, `k!hug`, `k!spacefont`, `k!reminder`, `k!emojisteal` , `k!number`, `k!selfnickname`, `k!ascii`, `k!deletethis`, `k!random_user`, `k!cigaret`",inline=True)
                 message = await bot.say(embed=em)
                 reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "💾":
