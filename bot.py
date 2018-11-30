@@ -1138,11 +1138,7 @@ async def delmod(ctx, member: discord.Member):
         embed=discord.Embed(title="Permission Denied.", description="You don't have permission to use this command, Fool", color=0x6b009c)
         await bot.say(embed=embed)        
                 
-@bot.command(pass_context=True)
-async def deletethis(ctx):
-    await bot.say('Ok!')
-    await bot.delete_message(ctx.message)
-    await bot.say('**Message deleted!**')
+
 
 @bot.command(pass_context=True)
 @commands.has_permissions(manage_messages=True)
