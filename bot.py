@@ -269,7 +269,7 @@ async def on_message_delete(message):
     	return
     else:
     	channel1 = bot.get_channel('506435592062500864')
-    	await bot.send_message(channel1, f"```{author} in {message.server.name} Delete-message: {content}```") 
+    	await bot.send_message(channel1, f"```{author} in {message.server.name} {message.channel.id} Delete-message: {content}```") 
     if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
     	return
     else:
@@ -693,7 +693,16 @@ async def hack(ctx, hack: discord.User=None):
      device = ['Android 4.4.4','Android 5.1.1','Android 7.1.1','Iphone 6s','Windows 7','Windows 8','Windows 10','Iphone X']          
      embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
      await bot.edit_message(lmao, embed=embed)
-    
+  
+@bot.command(aliases=["hb", "note"], description="Upload text to hastebin.")
+async def hastebin(ctx, *, content):
+    async with aiohttp.ClientSession() as session:
+        async with session.post("https://hastebin.com/documents", data=content.encode('utf-8')) as post:
+            post = await post.json()
+            url = f"https://hastebin.com/{post['key']}"
+            embed = discord.Embed(title="Click Here", url=url)
+            await bot.say(embed=embed)		
+	
     
 @bot.command(pass_context=True)
 async def ping(ctx):	
@@ -1475,7 +1484,7 @@ async def h(ctx):
                 reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "💾":
                 emb =  discord.Embed(colour=discord.Colour.magenta()) 
-                emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`, `k!donate`", inline=True)
+                emb.add_field(name='Information & Other Commands',value="`k!serverinfo`, `k!userinfo`, `k!invitebot`, `k!botowner`, `k!ping`, `k!report`, `k!idea`, `k!search`, `k!donate`, `k!hastebin`", inline=True)
                 message = await bot.say(embed=emb)
                 reaction = await bot.wait_for_reaction(message=message, user = ctx.message.author)                
          elif str(reaction.reaction.emoji) == "🎨":                                
