@@ -282,7 +282,7 @@ async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandNotFound):
 
         embed = discord.Embed(colour=(0x36393E))
-        embed.add_field(name="<:error:501020141643890703> **Error !**", value=f"**This command can't be found ! **``Type k!help``", inline=True)
+        embed.add_field(name="<:error:522327206559481868> **Error !**", value=f"**This command can't be found ! **``Type k!help``", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
         
         
@@ -294,7 +294,7 @@ async def on_command_error(error, ctx):
     elif isinstance(error, commands.NoPrivateMessage):
         try:
             embed = discord.Embed(colour=(0x36393E))
-            embed.add_field(name="<:error:501020141643890703> Error !", value="This command can't be executed here !\nIf you want to try this command go on a Discord server where I am.", inline=True)
+            embed.add_field(name="<:error:522327206559481868> Error !", value="This command can't be executed here !\nIf you want to try this command go on a Discord server where I am.", inline=True)
             await bot.send_message(ctx.message.author, embed=embed)
             return
 
@@ -303,13 +303,13 @@ async def on_command_error(error, ctx):
 
     elif isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(colour=(0x36393E))
-        embed.add_field(name="<:error:501020141643890703> Error!", value="Missing arguments!", inline=True)
+        embed.add_field(name="<:error:522327206559481868> Error!", value="Missing arguments!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)
     elif isinstance(error, commands.errors.BadArgument):        
         pass
     elif isinstance(error, commands.errors.CommandInvokeError):        
         embed = discord.Embed(colour=(0x36393E))
-        embed.add_field(name="<:error:501020141643890703> Error!", value="Missing permissions, I'm need all permissions!", inline=True)
+        embed.add_field(name="<:error:522327206559481868> Error!", value="Missing permissions, I'm need all permissions!", inline=True)
         await bot.send_message(ctx.message.channel, embed=embed)		
     else:
         raise error
@@ -350,6 +350,8 @@ async def on_member_remove(member):
 async def search(ctx, *, msg=None):
     if msg is None:
       await bot.say("Please specify a string")
+    if "@here" in ctx.message.content or "@everyone" in ctx.message.content:
+    	await bot.say('idiot')
     else:
       await bot.say('http://lmgtfy.com/?q=' + msg)
 
@@ -611,7 +613,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{ctx.message.author} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)		
-	elif select == "{user3)":		
+	if select == "{user3)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user2} Survived!", inline=True)
 		await bot.say(embed=embed)	
@@ -628,7 +630,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user3} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)		
-	elif select == "{user2)":		
+	if select == "{user2)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user3} Survived!", inline=True)
 		await bot.say(embed=embed)	
@@ -645,7 +647,7 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user2} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)
-	elif select == "{user1)":		
+	if select == "{user1)":		
 		embed = discord.Embed(title="Russian Roulette", colour=(0x36393E))
 		embed.add_field(name="Game", value=f"{user3} Survived!", inline=True)
 		await bot.say(embed=embed)	
