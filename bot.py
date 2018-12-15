@@ -696,7 +696,7 @@ async def hack(ctx, hack: discord.User=None):
      embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
      await bot.edit_message(lmao, embed=embed)
   
-@bot.command(aliases=["hb", "note"], description="Upload text to hastebin.")
+@bot.command(pass_context=True, aliases=["hb", "note"], description="Upload text to hastebin.")
 async def hastebin(ctx, *, content):
     async with aiohttp.ClientSession() as session:
         async with session.post("https://hastebin.com/documents", data=content.encode('utf-8')) as post:
