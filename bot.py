@@ -696,7 +696,7 @@ async def hack(ctx, hack: discord.User=None):
      embed.add_field(name="Hack " + hack,value="Device:  {}".format(random.choice(device)))     
      await bot.edit_message(lmao, embed=embed)
   
-@bot.command(pass_context=True, aliases=["hb", "note"], description="Upload text to hastebin.")
+@bot.command(aliases=["hb", "note"], description="Upload text to hastebin.")
 async def hastebin(ctx, *, content):
     async with aiohttp.ClientSession() as session:
         async with session.post("https://hastebin.com/documents", data=content.encode('utf-8')) as post:
@@ -705,6 +705,30 @@ async def hastebin(ctx, *, content):
             embed = discord.Embed(title="Click Here", url=url)
             await bot.say(embed=embed)		
 	
+	
+@bot.command(pass_context=True)
+async def lock(ctx):
+	if ctx.message.author.server_permissions.manage_channels:
+            overwrite = discord.PermissionOverwrite()
+            server = ctx.message.server
+            role = discord.utils.get(server.roles, name='@everyone')
+            overwrite.send_messages = False
+            await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
+            await bot.add_reaction(ctx.message, emoji="lock")            
+	else:
+		await bot.say("You need MANAGE/CHANNEL permission.", delete_after = 2)
+		
+@bot.command(pass_context=True)
+async def unlock(ctx):
+	if ctx.message.author.server_permissions.manage_channels:
+            overwrite = discord.PermissionOverwrite()
+            server = ctx.message.server
+            role = discord.utils.get(server.roles, name='@everyone')
+            overwrite.send_messages = True
+            await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
+            await bot.add_reaction(ctx.message, emoji="unlock")
+	else:
+		await bot.say("You need MANAGE/CHANNEL permission.", delete_after = 2)	
     
 @bot.command(pass_context=True)
 async def ping(ctx):	
