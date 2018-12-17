@@ -714,7 +714,7 @@ async def lock(ctx):
             role = discord.utils.get(server.roles, name='@everyone')
             overwrite.send_messages = False
             await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
-            await bot.add_reaction(ctx.message, emoji="lock")            
+            await bot.add_reaction(ctx.message, emoji="🔒")            
 	else:
 		await bot.say("You need MANAGE/CHANNEL permission.", delete_after = 2)
 		
@@ -726,7 +726,7 @@ async def unlock(ctx):
             role = discord.utils.get(server.roles, name='@everyone')
             overwrite.send_messages = True
             await bot.edit_channel_permissions(ctx.message.channel, role, overwrite)
-            await bot.add_reaction(ctx.message, emoji="unlock")
+            await bot.add_reaction(ctx.message, emoji="🔓")
 	else:
 		await bot.say("You need MANAGE/CHANNEL permission.", delete_after = 2)	
     
