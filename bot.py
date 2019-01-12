@@ -664,6 +664,11 @@ async def russianroulette(ctx, user1: discord.User=None, user2: discord.User=Non
 		users0 = ctx.message.author		
 		embed.add_field(name="Game Started", value=f"{user1} shot and dead 🔫", inline=True)
 		await bot.say(embed=embed)              
+
+@bot.command(pass_context=True)
+async def mentionsound(ctx):
+	voice = await message.author.voice.channel.connect()
+	voice.play(discord.FFmpegPCMAudio('Discord MentionNotification Sound.mp3'))		
 		
 @bot.command(pass_context=True)
 async def hack(ctx, hack: discord.User=None):	
