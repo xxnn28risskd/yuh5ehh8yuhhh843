@@ -321,30 +321,9 @@ async def on_reaction_add(reaction, user):
     	return
     if str(reaction.emoji) == "🔊":
     	role = discord.utils.get(user.server.roles, name="Mention Allowed")
-    	await bot.add_roles(user, role)        	        
-                   
-@bot.command(pass_context=True)
-async def helplogs(ctx):
-	embed = discord.Embed(colour=(0x36393E))
-	embed.add_field(name="How to open logs?", value="Create kermit-logs channel in server", inline=False)
-	embed.add_field(name="What does logs?", value="You see all deleted/sent messages and more...", inline=False)
-	embed.add_field(name="How to disable log system?", value="Delete kermit-logs channel", inline=False)	 
-	await bot.say(embed=embed)	                                     
-                   
-@bot.event
-async def on_member_join(member):      
-    	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
-    	embed = discord.Embed(colour=(0x36393E))
-    	embed.add_field(name="New Member:", value=f"Name: {member}", inline=True)
-    	embed.set_image(url=member.avatar_url)
-    	await bot.send_message(channel1, embed=embed)            
-@bot.event
-async def on_member_remove(member):
-    	channel1 = discord.utils.get(member.server.channels, name="kermit-logs")
-    	embed = discord.Embed(colour=(0x36393E))
-    	embed.add_field(name="New Left:", value=f"Name: {member}", inline=True)
-    	embed.set_image(url=member.avatar_url)
-    	await bot.send_message(channel1, embed=embed)
+	    	
+
+
 
 @bot.command(pass_context = True)
 async def search(ctx, *, msg=None):
