@@ -254,28 +254,6 @@ async def resume(con):
                 servers_songs[con.message.server.id].resume()
                 paused[con.message.server.id]=False
 
-
-
-
-
-
-
-# Logs deleted messages in console
-@bot.event
-async def on_message_delete(message):
-    author = message.author
-    content = message.content
-    if author.id == '488030289453645852' or author.id == '492666280483094538':
-    	return
-    else:
-    	channel1 = bot.get_channel('506435592062500864')
-    	await bot.send_message(channel1, f"```{author} in {message.server.name} {message.channel.id} Delete-message: {content}```") 
-    if message.author.id == '488030289453645852' or message.author.id == '492666280483094538':
-    	return
-    else:
-    	channel1 = discord.utils.get(message.server.channels, name="kermit-logs")
-    	await bot.send_message(channel1, f"```{message.author} Deleted message in '{message.channel}' message: {message.content}```")
-    	await bot.process_commands(message)
 		
 @bot.event
 async def on_command_error(error, ctx):
@@ -313,16 +291,6 @@ async def on_command_error(error, ctx):
         await bot.send_message(ctx.message.channel, embed=embed)		
     else:
         raise error
-    
-@bot.event
-async def on_reaction_add(reaction, user):
-    roleChannelId = '506493904535945244'
-    if reaction.message.channel.id != roleChannelId:
-    	return
-    if str(reaction.emoji) == "🔊":
-    	role = discord.utils.get(user.server.roles, name="Mention Allowed")
-	    	
-
 
 
 @bot.command(pass_context = True)
